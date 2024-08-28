@@ -1,0 +1,14 @@
+export interface TemplateLetter {
+    id: string;
+    subject: string;
+    userId: string;
+    introduction?: string;
+    reasonForGoodbye?: string;
+    turningPoint?: string;
+    stepsForChange?: string[];
+    futureAspirations?: string;
+    affirmation?: string;
+    conclusion?: string;
+    signature: string;
+    draft: boolean;
+  }

@@ -1,0 +1,30 @@
+ 
+
+<div class="letters-container">
+    <!-- Section to display all template letters as cards -->
+     <div class="template-card">
+    <h2>Template Letters</h2>
+     <p>This goodbye letter is your space to write goodbye to a sronghold or vice with guided prompts"</p>
+     <button><span class="plus button"></span>Add Template Letter</button>
+     <ul>
+     <li><span class="saved icon"><img></span>{{templateLetterCount}}</li>
+     <li><span class="draft icon"><img></span>{{templateLetterDraftCount}}</li>
+    </ul>
+
+    </div>
+
+    <div class="content-card">
+        <h2>Content Letter</h2>
+         <p>This goodbye letter is your space to write goodbye to a strong hold or vice freely, letting your thoughts and emotions flow naturally without any set structure. It's a personal and unique expression of your voice, crafted entirely by you."</p>
+         <button><span class="plus button"></span>Add A Freestyle Letter</button>
+         <ul>
+         <li><span class="saved icon"><img></span>{{contentLetterCount}}</li>
+         <li><span class="draft icon"><img></span>{{contentLetterDraftCount}}</li>
+        </ul>
+
+        </div>
+    
+    </div>
+ <div>
+    <button *ngIf="contentLetterCount > 0 || templateLetterCount > 0" (click)="showLetters()"> View All Content Letters</button>
+</div>

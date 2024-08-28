@@ -1,0 +1,21 @@
+<div class="content-letter-list">
+    <h2>Content Letters</h2>
+    <div *ngFor="let letter of contentLetters" class="card">
+      <a [routerLink]="['/content/', letter.id]" class="card-link">
+        <div class="card-body">
+          <h5 class="card-title">{{ letter.subject }}</h5>
+          <p class="card-text">{{ letter.content }}</p>
+        </div>
+      </a>
+    </div>
+  
+    <h2>Template Letters</h2>
+    <div *ngFor="let letter of templateLetters" class="card">
+      <a [routerLink]="['/template/', letter.id]" class="card-link">
+        <div class="card-body">
+          <h5 class="card-title">{{ letter.subject }}</h5>
+        </div>
+      </a>
+    </div>
+  </div>
+  

@@ -1,0 +1,35 @@
+<div class="gb-letter-add">
+  <h2>Add New Letter</h2>
+  <form (ngSubmit)="onSubmit(letterForm)" #letterForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        required
+        [(ngModel)]="letter.subject"
+        name="subject"
+        #title="ngModel"
+      />
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        required
+        [(ngModel)]="letter.content"
+        name="content"
+        #content="ngModel"
+      ></textarea>
+      <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger">
+        Content is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="letterForm.form.invalid">Add Letter</button>
+  </form>
+</div>
