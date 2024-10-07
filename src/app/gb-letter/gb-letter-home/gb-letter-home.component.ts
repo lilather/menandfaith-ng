@@ -17,43 +17,64 @@ export class GbLetterHomeComponent implements OnInit {
   contentLetterCount: number = 0; // To count all content letters
   contentLetterDraftCount: number = 0; // To count draft content letters
 
-  // Bind these objects to the form fields in the template
-
-
-  constructor(private letterStateService: LetterStateService,  private letterService: LetterService, private router: Router) {} // Inject Router
+  constructor(
+    private letterStateService: LetterStateService, 
+    private letterService: LetterService, 
+    private router: Router
+  ) {} // Inject Router
 
   ngOnInit() {
-    this.loadLetters();
+    this.subscribeToLetterState();
   }
 
   loadLetters() {
     this.letterService.getAllTemplateLetters().subscribe((letters) => {
-      this.templateLetters = letters;
-      this.templateLetterCount = letters.length;
-      this.templateLetterDraftCount = letters.filter(letter => letter.draft === true).length;
       this.letterStateService.setTemplateLetters(letters);
-      // Count draft template letters
     });
 
     this.letterService.getAllContentLetters().subscribe((letters) => {
+      this.letterStateService.setContentLetters(letters);
+    });
+  }
+
+  subscribeToLetterState() {
+    this.letterStateService.templateLetters$.subscribe((letters) => {
+      this.templateLetters = letters;
+      this.templateLetterCount = letters.length;
+      this.templateLetterDraftCount = letters.filter(letter => letter.draft === true).length;
+    });
+
+    this.letterStateService.contentLetters$.subscribe((letters) => {
       this.contentLetters = letters;
       this.contentLetterCount = letters.length;
       this.contentLetterDraftCount = letters.filter(letter => letter.draft === true).length;
-      this.letterStateService.setContentLetters(letters);
-      // Count draft content letters
     });
   }
 
   // Methods to handle displaying all letters
   showLetters() {
     // Logic to show all template letters or navigate to a different component
-    this.router.navigate(['/template-letters']); // Navigate to a detailed view page
+    this.router.navigate(['goodbye-letter/gb-list/both']); // Navigate to a detailed view page
   }
 
-  showContentLetters() {
-    // Logic to show all content letters or navigate to a different component
-    console.log('Show all content letters');
-    this.router.navigate(['/content-letters']); // Navigate to a detailed view page
+  showContentLetters() {  
+   // Logic to show all content letters or navigate to a different component
+    this.router.navigate(['goodbye-letter/gb-list/content-only']); // Navigate to a detailed view page
+  }
+
+  showTemplateLetters() {   
+    // Logic to show all template letters or navigate to a different component
+    this.router.navigate(['goodbye-letter/gb-list/template-only']); // Navigate to a detailed view page
+  }
+
+
+  addContentLetter() {
+    // Logic to add a new content letter
+    this.router.navigate(['goodbye-letter/content-letter-add']); // Navigate to the add content letter page
+  }
+
+  addTemplateLetter() {      
+    // Logic to add a new template letter
+    this.router.navigate(['goodbye-letter/template-letter-add']); // Navigate to the add template letter page
   }
 }
-

@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<header>
+    <!-- Include navigation, branding, or any header content -->
+    <nav>
+      <ul>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/goodbye-letter">Goodbye Letter</a></li>
+        <!-- Add other navigation links as needed -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- This is where the routed views will be displayed -->
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer>
+    <!-- Include footer content -->
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+  </footer>

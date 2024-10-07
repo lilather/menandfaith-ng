@@ -1,30 +1,68 @@
- 
-
-<div class="letters-container">
-    <!-- Section to display all template letters as cards -->
-     <div class="template-card">
-    <h2>Template Letters</h2>
-     <p>This goodbye letter is your space to write goodbye to a sronghold or vice with guided prompts"</p>
-     <button><span class="plus button"></span>Add Template Letter</button>
-     <ul>
-     <li><span class="saved icon"><img></span>{{templateLetterCount}}</li>
-     <li><span class="draft icon"><img></span>{{templateLetterDraftCount}}</li>
-    </ul>
-
-    </div>
-
-    <div class="content-card">
-        <h2>Content Letter</h2>
-         <p>This goodbye letter is your space to write goodbye to a strong hold or vice freely, letting your thoughts and emotions flow naturally without any set structure. It's a personal and unique expression of your voice, crafted entirely by you."</p>
-         <button><span class="plus button"></span>Add A Freestyle Letter</button>
-         <ul>
-         <li><span class="saved icon"><img></span>{{contentLetterCount}}</li>
-         <li><span class="draft icon"><img></span>{{contentLetterDraftCount}}</li>
-        </ul>
-
+<div class="container mt-5">
+    <!-- Row to contain the template and content letter cards -->
+    <div class="row">
+      <!-- Template Letters Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Template Letters</h2>
+            <p class="card-text">
+              This goodbye letter is your space to write goodbye to a stronghold or vice with guided prompts.
+            </p>
+            <button class="btn btn-primary" (click)="addTemplateLetter()">
+              <span class="plus button"></span>Add Template Letter
+            </button>
+            <button class="btn btn-primary" (click)="showTemplateLetters()">
+              <span class="plus button"></span> Show Template Letters
+            </button>
+            <ul class="list-unstyled mt-3">
+              <li>
+                <span class="saved icon"><img></span> {{ templateLetterCount }} Saved Letters
+              </li>
+              <li>
+                <span class="draft icon"><img></span> {{ templateLetterDraftCount }} Draft Letters
+              </li>
+            </ul>
+          </div>
         </div>
-    
+      </div>
+  
+      <!-- Content Letters Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Content Letter</h2>
+            <p class="card-text">
+              This goodbye letter is your space to write goodbye to a stronghold or vice freely, letting your thoughts and emotions flow naturally without any set structure. It's a personal and unique expression of your voice, crafted entirely by you.
+            </p>
+            <button class="btn btn-primary" (click)="addContentLetter()">
+              <span class="plus button"></span>Add A Freestyle Letter
+            </button>
+            <button class="btn btn-primary" (click)="showContentLetters()">
+              <span class="plus button"></span>Show Content Letters
+            </button>
+            <ul class="list-unstyled mt-3">
+              <li>
+                <span class="saved icon"><img></span> {{ contentLetterCount }} Saved Letters
+              </li>
+              <li>
+                <span class="draft icon"><img></span> {{ contentLetterDraftCount }} Draft Letters
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
- <div>
-    <button *ngIf="contentLetterCount > 0 || templateLetterCount > 0" (click)="showLetters()"> View All Content Letters</button>
-</div>
+  
+    <!-- Button to view all letters if there are any -->
+    <div class="text-center">
+      <button 
+        class="btn btn-outline-secondary mt-3" 
+        *ngIf="contentLetterCount > 0 || templateLetterCount > 0" 
+        (click)="showLetters()"
+      >
+        View All Content Letters
+      </button>
+    </div>
+  </div>
+  

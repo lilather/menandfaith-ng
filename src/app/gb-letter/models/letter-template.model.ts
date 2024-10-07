@@ -11,4 +11,6 @@ export interface TemplateLetter {
     conclusion?: string;
     signature: string;
     draft: boolean;
-  }
+    createdDate?: Date;
+    lastModifiedDate?: Date;
+}

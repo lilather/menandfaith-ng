@@ -1,0 +1,33 @@
+{
+    "contentLetters": [
+      {
+        "id": 1,
+        "title": "Farewell to Alcohol",
+        "content": "Today, I say goodbye to the bottle that has taken so much from me. I choose to live a healthier life..."
+      },
+      {
+        "id": 2,
+        "title": "Breaking Free from Procrastination",
+        "content": "No more delays. I am taking charge of my life and pursuing my goals without hesitation. Today marks a new beginning..."
+      }
+    ],
+    "templateLetters": [
+      {
+        "id": 1,
+        "title": "Goodbye to Negative Thoughts",
+        "prompts": [
+          { "prompt": "What negative thoughts do you frequently experience?", "response": "I often feel like I'm not good enough..." },
+          { "prompt": "How do these thoughts affect your life?", "response": "They make me doubt myself and avoid taking risks..." }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Letting Go of Fear",
+        "prompts": [
+          { "prompt": "What fears are holding you back?", "response": "I'm afraid of failing, of not meeting expectations..." },
+          { "prompt": "What can you do to overcome these fears?", "response": "I can start by taking small steps and embracing challenges..." }
+        ]
+      }
+    ]
+  }
+  
