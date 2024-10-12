@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CookieService } from ' ';  // Import the CookieService
+import { CookieService } from 'ngx-cookie-service';  // Import the CookieService
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private cookieService: CookieService) {}  // Inject CookieService
-
+  
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get the token from the cookie (not localStorage)
-    const token = this.cookieService.get('your-jwt-cookie-name');  // Replace with your actual cookie name
-
+    const token = this.cookieService.get('menandfaith');  // Replace with your actual cookie name
+    console.log('Token:', token);
     // If token exists, clone the request and add the token to the headers
     if (token) {
       const clonedRequest = req.clone({
