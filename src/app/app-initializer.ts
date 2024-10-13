@@ -4,9 +4,9 @@ import { CookieService } from 'ngx-cookie-service';  // Import the CookieService
 export function appInitializer(http: HttpClient): () => Promise<any> {
   return () => {
     return new Promise((resolve, reject) => {
-  
-      // If the token exists, proceed with the HTTP request with credentials
-      http.get('http://localhost:3000/users/current')
+
+      // HTTP request with credentials included
+      http.get('http://localhost:3000/users/current', { withCredentials: true })
         .subscribe({
           next: (data) => {
             console.log('App initialized with data:', data);

@@ -16,6 +16,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),   
     CookieService,
     BrowserAnimationsModule,
-    
   ]
 };
