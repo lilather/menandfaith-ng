@@ -9,10 +9,13 @@ import { appInitializer } from './app-initializer';
 import { HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(),
     provideHttpClient(withFetch()),   
     CookieService,
-
+    BrowserAnimationsModule,
+    
   ]
 };

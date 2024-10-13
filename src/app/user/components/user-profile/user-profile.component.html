@@ -1,1 +1,25 @@
-<p>user-profile works!</p>
+<p-card>
+    <ng-template pTemplate="header">
+      <div class="header">
+        <p-avatar image="https://i.pravatar.cc/150" shape="circle"></p-avatar>
+        <div class="user-info">
+          <h2>{{ user.name }}</h2>
+          <p>{{ user.email }}</p>
+        </div>
+      </div>
+    </ng-template>
+  
+    <ng-template pTemplate="content">
+      <div class="content">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+      </div>
+    </ng-template>
+  
+    <ng-template pTemplate="footer">
+      <p-button label="Edit Profile" icon="pi pi-pencil" class="p-button-primary"></p-button>
+      <p-button label="Logout" icon="pi pi-sign-out" class="p-button-secondary"></p-button>
+    </ng-template>
+  </p-card>
+  
