@@ -1,38 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../enviroments/enviroment'; // Ensure this path is correct
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { UserStateService } from './users/services/user-state-service';
+import {log} from './decorators/log.decorator'
+import {UserService} from './users/services/user.service'
+import { IUser } from './users/user.model';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [SharedModule],
-
+  imports: [SharedModule, HttpClientModule,],
 })
 export class AppComponent implements OnInit {
-  apiUrl = environment.API_URL;  // Use the API URL from the environment file
-  title = 'ng-menandfaith';
-  apiStatusMessage: string = ''; // This will hold the status message from the API
+  currentUser: IUser | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService, @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
+  @log
   ngOnInit(): void {
-    this.checkApiUrl();  // Check the API status on component initialization
-  }
+    if (isPlatformBrowser(this.platformId)) {
 
-  checkApiUrl(): void {
-    // Make a request to the /status endpoint of the API
-    this.http.get(`${this.apiUrl}/status`).subscribe({
-      next: (response: any) => {
-        this.apiStatusMessage = response.status; // Expecting a 'status' field in the response
-        console.log(this.apiStatusMessage);  // Log the success message
+      this.userService.getCurrentUser().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+        console.log('Current user:', this.currentUser);
       },
-      error: (err) => {
-        this.apiStatusMessage = 'API is not working!';  // Error message if the API call fails
-        console.error(this.apiStatusMessage);  // Log the error message
+      error: (error) => {
+        console.error('Error retrieving current user:', error);
       }
     });
-  }
+  }}
 }

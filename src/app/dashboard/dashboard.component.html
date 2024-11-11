@@ -1,0 +1,24 @@
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 bg-grey">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-10">
+      <p>dashboard works!</p>
+      <div class="row">
+        <div *ngFor="let card of routeCards" class="col-md-4 mb-4">
+          <div class="card h-15 shadow" (click)="navigateTo(card.path)" style="cursor: pointer;">
+            <div class="card-body">
+              <img [src]="card.icon" alt="{{ card.title }} icon" class="card-icon mb-2">
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="card-text">{{ card.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

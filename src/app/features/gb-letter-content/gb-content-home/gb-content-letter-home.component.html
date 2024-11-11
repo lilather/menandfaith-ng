@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <!-- Header Section -->
+  <h1>Goodbye Letter Content</h1>
+  <p>This page allows you to create and manage your goodbye letters.</p>
+
+  <!-- Card for Adding New Letter -->
+  <div class=" feature-card card mb-3" (click)="goToAdd()">
+    <div class="card-body text-center">
+      <i class="fas fa-plus fa-2x"></i>
+      <p>Add New Letter</p>
+    </div>
+  </div>
+
+  <!-- Cards for Existing Letters -->
+  <div *ngFor="let letter of contentLetters" class=" feature-card card mb-3" (click)="goToDetail(letter.id)">
+    <div class="card-body">
+      <h5 class="card-title">{{ letter.subject }}</h5>
+      <p class="card-text">{{ letter.content | slice:0:100 }}...</p>
+    </div>
+  </div>
+</div>

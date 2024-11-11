@@ -1,0 +1,19 @@
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.2s;
+}
+
+.card {
+  height: 250px; /* Set a fixed height for uniformity */
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+/*# sourceMappingURL=dashboard.component.css.map */

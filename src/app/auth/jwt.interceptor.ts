@@ -1,22 +1,42 @@
-import { inject } from '@angular/core';
-import { HttpRequest, HttpHandlerFn, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+// jwt.interceptor.ts
+import { Injectable } from '@angular/core';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import {log} from '../decorators/log.decorator';
 
-export function menAndFaithCookieInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
-  const cookieService = inject(CookieService);  // Use Angular's inject function to get services
-
-  const menandfaithcookie = cookieService.get('menandfaith');  // Retrieve the cookie
-
-  if (menandfaithcookie) {
-    console.log(`menandfaith cookie: ${menandfaithcookie}`);  // Log the cookie value
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${menandfaithcookie}`,  // Add the Authorization header
-      },
-    });
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  constructor(
+    private cookieService: CookieService,
+  ) {
   }
-  console.log('Request with headers:', req.headers);  // Log headers
 
-  return next(req);  // Pass the request on to the next handler
+  @log
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    console.error('Intercepting request:', req);
+    const token = this.cookieService.get('menandfaith');
+    if (token) {
+      console.error('Token found:', token);
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+    } else {
+    }
+
+    return next.handle(req);
+  }
 }

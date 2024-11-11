@@ -1,4 +1,5 @@
-<div class="user-component">
-    <h1>User Component</h1>
-    <p>Welcome to the user component!</p>
-</div>
+<div *ngIf="currentUser">
+    <h1>{{ currentUser.firstName }}'s Profile</h1>
+    <p>Email: {{ currentUser.email }}</p>
+    <!-- Render other data -->
+  </div>

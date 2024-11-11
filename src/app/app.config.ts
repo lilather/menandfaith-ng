@@ -1,21 +1,38 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'; // Include interceptors
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { routes } from './routes';  // Ensure this points to the correct main routing file
+import { featureRoutes } from './routes/feature-routes';
+import { userRoutes } from './routes/user.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { menAndFaithCookieInterceptor } from './auth/jwt.interceptor';  // Import the cookie interceptor
-import { CookieService } from 'ngx-cookie-service';  // Import the CookieService
+import { CookieService } from 'ngx-cookie-service';
+import { dashboardRoutes } from './routes/dashboard-routes';
+import { JwtInterceptor } from './auth/jwt.interceptor';
+import { AuthErrorInterceptor } from './auth/auth-error.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+const routes = [...userRoutes, ...featureRoutes, ...dashboardRoutes];
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    CookieService,
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(
-      withFetch(),  // Use fetch API
-      withInterceptors([menAndFaithCookieInterceptor])  // Add the cookie interceptor
+      withFetch(),
+      withInterceptorsFromDi()
     ),
-    CookieService  // Provide the CookieService
+    provideRouter(routes),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthErrorInterceptor,
+      multi: true
+    }
   ]
 };
+
