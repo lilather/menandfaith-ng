@@ -1,98 +1,109 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, of } from 'rxjs';
-import { LetterStateService } from '../services/gb-letter-content.state-service'; // Import the service that handles state and API calls
-import { ContentLetter } from '../models'; // Import the ContentLetter model interface
+import { LetterStateService } from '../services/gb-letter-content.state-service';
+import { ContentLetter } from '../models';
 import { tap, catchError, switchMap } from 'rxjs/operators';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DatePipe} from "@angular/common";
-import {CommonModule} from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe, CommonModule } from '@angular/common';
+import {ConfirmationModalComponent} from "../../../shared/confirmation-modal/confirmation-modal.component";
+
 @Component({
-  standalone:true,
-  imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule],
+  standalone: true,
+  imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule, ConfirmationModalComponent],
   selector: 'app-gb-content-letter-detail',
   templateUrl: './gb-template-letter-home.component.html',
   styleUrls: ['./gb-template-letter-home.component.scss']
 })
 export class GbContentLetterDetailComponent implements OnInit, OnDestroy {
-  private subscription: Subscription = new Subscription(); // Manages subscriptions to avoid memory leaks
-  isChanged: boolean = false; // Track if there are any changes
+  private subscription: Subscription = new Subscription();
+  isChanged = false;
 
   letter: ContentLetter = {
-    id: '',
+    id: '', // Initialize with an empty string to avoid potential `undefined` issues
     subject: '',
-    userId: '',
     content: '',
     createdDate: new Date(),
     lastModifiedDate: new Date(),
     signature: '',
     draft: false
   };
+
   constructor(
-    private router: Router, // Inject Angular Router for navigation
-    private route: ActivatedRoute, // ActivatedRoute to access route parameters
-    private letterStateService: LetterStateService // Service to fetch and manage letter data
+    private router: Router,
+    private route: ActivatedRoute,
+    private letterStateService: LetterStateService
   ) {}
 
   ngOnInit(): void {
-    // Extract the letter ID from the route parameters
-    const letterId = this.route.snapshot.paramMap.get('id');
+    // Extract the letter ID from the route parameters with a default empty string fallback
+    const letterId = this.route.snapshot.paramMap.get('id') || '';
 
     if (letterId) {
-      // If a letter ID is provided in the route, attempt to fetch the letter by ID
       const sub = this.letterStateService.getContentLetterById(letterId).pipe(
-        // Use tap to immediately set the letter if found
         tap((letter) => {
           if (letter) {
-            this.letter = letter; // Assign the found letter to the component's letter property
+            this.letter = letter;
           }
         }),
         switchMap((letter) => {
-          // If the letter is not found, attempt to load all content letters
           if (!letter) {
-            // This switchMap cancels the previous subscription if a new one starts,
-            // ensuring that only the latest data stream is active.
             return this.letterStateService.contentLetters$.pipe(
               tap((loadedLetters) => {
-                // After loading all letters, find the one with the matching ID
                 this.letter = loadedLetters.find(l => l.id === letterId) || this.letter;
               })
             );
           }
-          return of(letter); // If the letter was found initially, return it wrapped in an observable
+          return of(letter);
         }),
         catchError((error) => {
-          // Handle any errors that occur during the fetch or processing
           console.error('Error fetching or loading content letters:', error);
-          return of(null); // Return null to indicate failure gracefully
+          return of(null);
         })
       ).subscribe();
 
-      // Add the subscription to the subscription manager for cleanup
       this.subscription.add(sub);
     }
   }
+
   onInputChange(): void {
-    this.isChanged = true; // Set the flag to true whenever there is a change
-    this.letter.lastModifiedDate = new Date(); // Update the last modified date
+    this.isChanged = true;
+    this.letter.lastModifiedDate = new Date();
   }
 
   saveChanges(): void {
-    // Update the template letter using the service
+    console.log('Saving changes:', this.letter);
     this.letterStateService.updateContentLetter(this.letter);
-
-    this.isChanged = false; // Reset the change tracking flag after saving
+    this.isChanged = false;
   }
+
   backToList(): void {
-    this.router.navigate(['goodbye-letter-content']); // Navigate back to the list of letters
+    this.router.navigate(['goodbye-letter-content']);
   }
 
-  deleteLetter(): void {
-    this.letterStateService.deleteContentLetter(this.letter.id); // Call service method to delete
-    this.router.navigate(['/goodbye-letter-content']); // Navigate back to the list after deletion
-  }
+
   ngOnDestroy(): void {
-    // Clean up all subscriptions when the component is destroyed to avoid memory leaks
     this.subscription.unsubscribe();
   }
+  showConfirmation: boolean = false;
+
+  deleteLetter(): void {
+    this.showConfirmation = true;
+  }
+
+  confirmDelete(): void {
+    this.showConfirmation = false;
+
+    console.log('Deleting letter:', this.letter);
+    // Ensure `letter.id` is defined before attempting to delete
+    if (this.letter.id) {
+      this.letterStateService.deleteContentLetter(this.letter.id);
+      this.router.navigate(['/goodbye-letter-content']);
+    }
+  }
+
+  cancelDelete(): void {
+    this.showConfirmation = false;
+  }
+
 }

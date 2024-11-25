@@ -12,10 +12,16 @@
   </div>
 
   <!-- Cards for Existing Letters -->
-  <div *ngFor="let letter of contentLetters" class=" feature-card card mb-3" (click)="goToDetail(letter.id)">
-    <div class="card-body">
-      <h5 class="card-title">{{ letter.subject }}</h5>
-      <p class="card-text">{{ letter.content | slice:0:100 }}...</p>
+  <div *ngIf="contentLetters.length > 0; else noLetters">
+
+    <div *ngFor="let letter of contentLetters" class="feature-card card mb-3" (click)="goToDetail(letter.id!)">
+      <div class="card-body">
+        <h5 class="card-title">{{ letter.subject }}</h5>
+        <p class="card-text">{{ letter.content | slice:0:100 }}...</p>
+      </div>
     </div>
   </div>
-</div>
+
+  <ng-template #noLetters>
+    <p>No letters available.</p>
+  </ng-template>

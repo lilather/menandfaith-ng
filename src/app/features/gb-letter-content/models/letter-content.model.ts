@@ -1,8 +1,8 @@
 export interface ContentLetter {
-    id: string;
+    id?: string;
+    _id?: string;
     content: string;
     subject: string;
-    userId: string;
     draft: boolean;
     signature: string;
     createdDate?: Date;

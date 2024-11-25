@@ -11,7 +11,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
 import { AuthErrorInterceptor } from './auth/auth-error.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-const routes = [...userRoutes, ...featureRoutes, ...dashboardRoutes];
+const routes = [...userRoutes, ...dashboardRoutes, ...featureRoutes];
 
 export const appConfig: ApplicationConfig = {
   providers: [

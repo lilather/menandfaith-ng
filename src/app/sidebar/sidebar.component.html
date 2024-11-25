@@ -1,1 +1,9 @@
-<p>sidebar works!</p>
+<div *ngIf="user$ | async as user; else loading">
+  @if(user.avatarUrl) {
+    <img [src]="user.avatarUrl" alt="{{ user.username }}">
+  }
+  <p>Welcome, {{ user.username }}</p>
+</div>
+<ng-template #loading>
+  <p>Loading user...</p>
+</ng-template>

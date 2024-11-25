@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private router: Router) {}
   ngOnInit(): void {
-    /*this.routeCards = featureRoutes.map(route => ({
+   this.routeCards = featureRoutes.map(route => ({
       title: route.data?.['title'],      // Extract title from route data
       description: route.data?.['description'],
       icon: route.data?.['icon'],
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
       path: route.path!                   // Extract path from route
     }));
 
-     */
+
   }
 
   navigateTo(path: string): void {

@@ -8,8 +8,9 @@ export interface IUser {
     password?: string;
     createdAt?: Date;
     updatedAt?: Date;
+    avatarUrl?: string;
   }
-  
+
  // user.model.ts
 export class CreateUserDto {
     username: string = '';
@@ -18,11 +19,10 @@ export class CreateUserDto {
     firstName: string = '';
     lastName: string = '';
   }
-  
+
   export class UpdateUserDto {
     username?: string = '';
     email?: string = '';
     firstName?: string = '';
     lastName?: string = '';
   }
-  

@@ -34,6 +34,7 @@ export class UserService {
     return this.http.delete<void>(`${this.apiUrl}/delete `, { withCredentials: true });
   }
   getCurrentUser(): Observable<IUser> {
+    console.log('calling getUser')
     return this.http.get<IUser>(`${this.apiUrl}/current`);
   }
 }

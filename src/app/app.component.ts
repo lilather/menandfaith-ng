@@ -3,9 +3,9 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UserStateService } from './users/services/user-state-service';
 import {log} from './decorators/log.decorator'
-import {UserService} from './users/services/user.service'
 import { IUser } from './users/user.model';
 import { isPlatformBrowser } from '@angular/common';
+import {firstValueFrom} from "rxjs";
 
 
 @Component({
@@ -16,23 +16,17 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [SharedModule, HttpClientModule,],
 })
 export class AppComponent implements OnInit {
-  currentUser: IUser | null = null;
+  user: IUser | null = null;
 
-  constructor(private http: HttpClient, private userService: UserService, @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  constructor(private http: HttpClient, private userStateService: UserStateService, @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+  }
 
   @log
-  ngOnInit(): void {
+  async  ngOnInit(): Promise<void>{
     if (isPlatformBrowser(this.platformId)) {
+      await this.userStateService.checkAndFetchUser();
+    }
 
-      this.userService.getCurrentUser().subscribe({
-      next: (user) => {
-        this.currentUser = user;
-        console.log('Current user:', this.currentUser);
-      },
-      error: (error) => {
-        console.error('Error retrieving current user:', error);
-      }
-    });
-  }}
+  }
 }

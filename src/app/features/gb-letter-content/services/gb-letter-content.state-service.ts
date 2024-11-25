@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { ContentLetter } from '../models';
+import { Injectable, signal, effect } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ContentLetter } from '../models';
 import { LetterService } from './gb-letter-content.service';
-
+import { toObservable } from '@angular/core/rxjs-interop';
+import {mapId} from './../../../utils/maptoId'
+import {UpdateLetterContentDto} from "../dtos";
 @Injectable({
   providedIn: 'root',
 })
 export class LetterStateService {
-  private contentLettersSubject = new BehaviorSubject<ContentLetter[]>([]);
-
-  contentLetters$ = this.contentLettersSubject.asObservable();
+  // Define a signal for storing all content letters
+  contentLetters = signal<ContentLetter[]>([]);
+  contentLetters$ = toObservable(this.contentLetters);
 
   constructor(private letterService: LetterService) {
     this.loadContentLetters();
@@ -19,17 +21,16 @@ export class LetterStateService {
   // Load all content letters from the API
   loadContentLetters(): void {
     this.letterService.getAllContentLetters().pipe(
-      tap((letters) => this.contentLettersSubject.next(letters)),
       catchError((error) => {
         console.error('Error loading content letters:', error);
-        return of([]); // Return an empty array in case of error
-      })
+        return of([]); // Return an empty array on error
+      }),
+      tap((letters) => this.contentLetters.set(letters || [])) // Ensure letters is never null
     ).subscribe();
   }
 
-  // Load all template letters from the API
-
-  getContentLetterById(id: string): Observable<ContentLetter | undefined> {
+  // Get a content letter by ID
+  getContentLetterById(id: string): Observable<ContentLetter | undefined | null> {
     return this.letterService.getContentLetterById(id).pipe(
       catchError((error) => {
         console.error('Error fetching content letter:', error);
@@ -37,17 +38,22 @@ export class LetterStateService {
       })
     );
   }
+
   // Add a new content letter via API
+// Add a new content letter via API
   addContentLetter(newLetter: ContentLetter): void {
     this.letterService.createContentLetter(newLetter).pipe(
       tap((letter) => {
-        const currentLetters = this.contentLettersSubject.getValue();
-        this.contentLettersSubject.next([...currentLetters, letter]);
-        console.log('New content letter added via API:', letter);
+        if (letter) { // Check that letter is not null
+          this.contentLetters.update((currentLetters) => [...currentLetters, letter]);
+          console.log('New content letter added via API:', letter);
+        } else {
+          console.warn('Failed to add content letter: received null');
+        }
       }),
       catchError((error) => {
         console.error('Error adding content letter:', error);
-        return of(null);
+        return of(null); // Return null to complete the stream gracefully
       })
     ).subscribe();
   }
@@ -55,29 +61,48 @@ export class LetterStateService {
 
   // Update an existing content letter via API
   updateContentLetter(updatedLetter: ContentLetter): void {
-    this.letterService.updateContentLetter(updatedLetter.id, updatedLetter).pipe(
-      tap(() => {
-        const currentLetters = this.contentLettersSubject.getValue();
-        const index = currentLetters.findIndex(letter => letter.id === updatedLetter.id);
-        if (index !== -1) {
-          currentLetters[index] = updatedLetter;
-          this.contentLettersSubject.next([...currentLetters]);
+    if (!updatedLetter.id) {
+      console.error(`Error: updatedLetter.id is undefined.${JSON.stringify(updatedLetter)}`);
+      return; // Exit early if id is missing
+    }
+    // Cons
+    // truct the DTO and assert id as string
+    const updateDto: UpdateLetterContentDto = {
+        id:updatedLetter.id,
+        subject:updatedLetter.subject,
+        content:updatedLetter.content,
+        signature:updatedLetter.signature,
+        draft:updatedLetter.draft,
+      }
+    this.letterService.updateContentLetter(updateDto).pipe(
+      tap((letter) => {
+        if (letter) {
+          console.log('updateDto', JSON.stringify(updateDto, null, 2));
+
+          // Log the letter object before sending it to the API
+
+          // Update contentLetters if a letter is successfully returned
+          this.contentLetters.update((currentLetters) =>
+            currentLetters.map((l) => (l.id === letter.id ? letter : l))
+          );
+          console.log('Content letter updated via API:', letter);
+        } else {
+          console.warn('Failed to update content letter: received null');
         }
-        console.log('Content letter updated via API:', updatedLetter);
       }),
       catchError((error) => {
         console.error('Error updating content letter:', error);
-        return of(null);
+        return of(null); // Return null to complete the stream gracefully
       })
     ).subscribe();
   }
-
   // Delete a content letter via API
   deleteContentLetter(id: string): void {
     this.letterService.deleteContentLetter(id).pipe(
       tap(() => {
-        const updatedLetters = this.contentLettersSubject.getValue().filter(letter => letter.id !== id);
-        this.contentLettersSubject.next(updatedLetters);
+        this.contentLetters.update((currentLetters) =>
+          currentLetters.filter((letter) => letter.id !== id)
+        );
         console.log('Content letter deleted via API:', id);
       }),
       catchError((error) => {

@@ -4,7 +4,7 @@
 
   <!-- Check if the form is defined to avoid errors -->
   <form *ngIf="contentLetterForm" [formGroup]="contentLetterForm" (ngSubmit)="onSubmit()">
-    
+
     <!-- Subject Field -->
     <div class="form-group">
       <label for="subject">Subject</label>
@@ -52,6 +52,8 @@
       <button type="submit" class="btn btn-primary" [disabled]="contentLetterForm.invalid">
         Submit Letter
       </button>
+
+
     </div>
 
     <!-- Navigation Buttons -->
