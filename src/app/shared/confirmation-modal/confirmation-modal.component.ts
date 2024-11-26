@@ -1,21 +1,32 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
+  selector: 'app-confirmation-dialog',
+  templateUrl: './confirmation-dialog.component.html',
   standalone: true,
-  selector: 'app-confirmation-modal',
-  templateUrl: './confirmation-modal.component.html',
+  imports: [DialogModule, ButtonModule],
 })
-export class ConfirmationModalComponent {
+export class ConfirmationDialogComponent implements OnInit {
+  @Input() visible: boolean = false;
   @Input() title: string = 'Confirm';
   @Input() message: string = 'Are you sure you want to proceed?';
-  @Output() confirm = new EventEmitter<void>();
-  @Output() cancel = new EventEmitter<void>();
+  @Input() confirmButtonLabel: string = 'Yes';
+  @Input() cancelButtonLabel: string = 'No';
 
-  onConfirm(): void {
-    this.confirm.emit();
+  @Output() onConfirm: EventEmitter<void> = new EventEmitter();
+  @Output() onCancel: EventEmitter<void> = new EventEmitter();
+
+  ngOnInit(): void {}
+
+  confirm(): void {
+    this.onConfirm.emit();
+    this.visible = false;
   }
 
-  onCancel(): void {
-    this.cancel.emit();
+  cancel(): void {
+    this.onCancel.emit();
+    this.visible = false;
   }
 }

@@ -9,11 +9,10 @@ import {CommonModule}  from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  selector: 'app-gb-template-letter-add',
-  templateUrl: './gb-template-letter-add.html',
-  styleUrls: ['./gb-template-letter-add.scss'],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    selector: 'app-gb-template-letter-add',
+    templateUrl: './gb-template-letter-add.html',
+    styleUrls: ['./gb-template-letter-add.scss']
 })
 export class GbTemplateAddComponent implements OnInit, OnDestroy {
   templateForm: FormGroup;

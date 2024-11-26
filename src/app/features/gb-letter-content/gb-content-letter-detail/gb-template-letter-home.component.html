@@ -39,13 +39,7 @@
 <button (click)="backToList()">Back to List</button>
 <button (click)="deleteLetter()">Delete</button>
 
-<app-confirmation-modal
-  *ngIf="showConfirmation"
-  [title]="'Confirm Deletion'"
-  [message]="'Are you sure you want to delete this letter?'"
-  (confirm)="confirmDelete()"
-  (cancel)="cancelDelete()">
-</app-confirmation-modal>
+
 
 <ng-template #noLetterFound>
   <div class="no-letter">

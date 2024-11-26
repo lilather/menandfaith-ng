@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LetterService } from '../services/gb-letter-template.service';
 import { TemplateLetter } from '../models';
-import {NgForOf, NgIf, SlicePipe} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
-  standalone: true,
-  selector: 'app-gb-template-letter-home',
-  templateUrl: './gb-template-letter-home.component.html',
-  imports: [
-    NgForOf,
-    NgIf,
-    SlicePipe
-  ],
-  styleUrls: ['./gb-template-letter-home.component.scss']
+    standalone: true,
+    selector: 'app-gb-template-letter-home',
+    templateUrl: './gb-template-letter-home.component.html',
+    imports: [
+        NgForOf,
+        NgIf,
+    ],
+    styleUrls: ['./gb-template-letter-home.component.scss']
 })
 export class GbTemplateLetterHomeComponent implements OnInit {
   templateLetters: TemplateLetter[] = [];

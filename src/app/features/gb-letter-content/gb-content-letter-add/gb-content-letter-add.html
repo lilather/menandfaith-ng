@@ -1,6 +1,8 @@
+
+<div class="wrapper">
 <div class="container mt-4">
   <!-- Title for the form -->
-  <h2>Add a New Content Letter</h2>
+  <h2>Add a New Good Bye Letter</h2>
 
   <!-- Check if the form is defined to avoid errors -->
   <form *ngIf="contentLetterForm" [formGroup]="contentLetterForm" (ngSubmit)="onSubmit()">
@@ -66,4 +68,5 @@
   <div *ngIf="!contentLetterForm">
     <p class="text-danger">Form is not available. Please try again later.</p>
   </div>
+</div>
 </div>

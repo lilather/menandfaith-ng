@@ -10,13 +10,20 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LetterService } from '../services/gb-letter-content.service';
 import { UserStateService } from "../../../users/services/user-state-service";
 import { log } from "../../../decorators/log.decorator";
-
+// Import PrimeNG modules
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 @Component({
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  selector: 'app-content-letter-add',
-  templateUrl: './gb-content-letter-add.html',
-  styleUrls: ['./gb-content-letter-add.scss']
+    standalone: true,
+    imports: [CommonModule, FormsModule, ReactiveFormsModule,InputTextModule,        // PrimeNG input text module
+      InputTextareaModule,    // PrimeNG input textarea module
+      ButtonModule,           // PrimeNG button module
+      CheckboxModule] ,     // PrimeNG checkbox module],
+    selector: 'app-content-letter-add',
+    templateUrl: './gb-content-letter-add.html',
+    styleUrls: ['./gb-content-letter-add.scss']
 })
 export class GbContentAddComponent implements OnInit, OnDestroy {
   contentLetterForm: FormGroup = this.fb.group({});
@@ -30,7 +37,8 @@ export class GbContentAddComponent implements OnInit, OnDestroy {
     private letterStateService: LetterStateService,
     private router: Router,
     private letterService: LetterService,
-    private userStateService: UserStateService // Inject UserStateService
+    private userStateService: UserStateService,
+    // Inject UserStateService
   ) {
   }
 

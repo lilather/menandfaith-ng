@@ -1,11 +1,8 @@
-<div class="modal-header">
-  <h5 class="modal-title">{{ title }}</h5>
-  <button type="button" class="btn-close" aria-label="Close" (click)="onCancel()"></button>
-</div>
-<div class="modal-body">
-  <p>{{ message }}</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
-  <button type="button" class="btn btn-danger" (click)="onConfirm()">Delete</button>
-</div>
+<button
+  tuiButton
+  type="button"
+  (click)="onClick()"
+>
+  Show
+</button>
+

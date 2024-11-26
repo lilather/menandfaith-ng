@@ -4,11 +4,10 @@ import { featureRoutes } from '../routes/feature-routes';
 import {CommonModule} from "@angular/common";
 import {SidebarComponent} from "../sidebar/sidebar.component";
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, SidebarComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'app-dashboard',
+    imports: [CommonModule, SidebarComponent],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   routeCards: { title: string; description: string; path: string; icon:string }[] = [];

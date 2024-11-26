@@ -5,15 +5,14 @@ import { UserStateService } from './users/services/user-state-service';
 import {log} from './decorators/log.decorator'
 import { IUser } from './users/user.model';
 import { isPlatformBrowser } from '@angular/common';
-import {firstValueFrom} from "rxjs";
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [SharedModule, HttpClientModule,],
+    standalone: true,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [SharedModule]
 })
 export class AppComponent implements OnInit {
   user: IUser | null = null;

@@ -6,14 +6,13 @@ import { ContentLetter } from '../models';
 import { tap, catchError, switchMap } from 'rxjs/operators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe, CommonModule } from '@angular/common';
-import {ConfirmationModalComponent} from "../../../shared/confirmation-modal/confirmation-modal.component";
 
 @Component({
-  standalone: true,
-  imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule, ConfirmationModalComponent],
-  selector: 'app-gb-content-letter-detail',
-  templateUrl: './gb-template-letter-home.component.html',
-  styleUrls: ['./gb-template-letter-home.component.scss']
+    standalone: true,
+    imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule],
+    selector: 'app-gb-content-letter-detail',
+    templateUrl: './gb-template-letter-home.component.html',
+    styleUrls: ['./gb-template-letter-home.component.scss']
 })
 export class GbContentLetterDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

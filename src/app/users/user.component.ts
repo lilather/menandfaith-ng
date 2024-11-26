@@ -7,11 +7,10 @@ import { IUser } from './user.model';
 import {log} from '../decorators/log.decorator';
 import {UserService} from './services/user.service';
 @Component({
-  selector: 'app-user',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+    selector: 'app-user',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
   currentUser: IUser | null = null;

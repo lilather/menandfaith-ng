@@ -1,0 +1,112 @@
+// General body styling for better aesthetics
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+// Wrapper div to center and constrain the form width
+.wrapper {
+  max-width: 900px; // Constrain width
+  margin: 0 auto; // Center horizontally
+  background-color: #ffffff; // Background color for better contrast
+  border-radius: 8px; // Slightly rounded corners
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+  padding: 2rem; // Inner padding
+}
+
+// Title styling
+h2 {
+  text-align: center; // Center-align the title
+  color: #4a4a4a; // Slightly softer text color
+  margin-bottom: 1.5rem; // Add spacing below the title
+}
+
+// Form styling
+form {
+  .form-group {
+    margin-bottom: 1.5rem; // Add spacing between fields
+    label {
+      display: block; // Ensure label is on its own line
+      font-weight: bold; // Make the label stand out
+      margin-bottom: 0.5rem; // Add spacing below the label
+    }
+
+    // Input and textarea fields
+    p-inputText,
+    p-inputTextarea {
+      width: 100%; // Ensure inputs take full width
+      font-size: 1rem; // Increase font size for readability
+      padding: 0.5rem; // Add padding inside inputs
+      border: 1px solid #ccc; // Subtle border
+      border-radius: 4px; // Rounded edges
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); // Inner shadow for depth
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #007ad9; // Highlight border on focus
+        outline: none; // Remove default outline
+      }
+    }
+
+    // Validation error message
+    .text-danger {
+      color: #d9534f; // Red for error
+      font-size: 0.875rem; // Slightly smaller font
+      margin-top: 0.5rem; // Add space between input and error message
+    }
+  }
+
+  // Checkbox field styling
+  .form-check {
+    display: flex; // Align checkbox and label
+    align-items: center;
+
+    label {
+      margin-left: 0.5rem; // Add spacing next to checkbox
+    }
+  }
+
+  // Buttons styling
+  .form-group button {
+    margin-right: 1rem; // Add spacing between buttons
+    font-size: 1rem; // Uniform font size for buttons
+    padding: 0.5rem 1rem; // Add padding to buttons
+  }
+}
+
+// Submit and Save Draft buttons
+.p-button-warning {
+  background-color: #f0ad4e !important;
+  border-color: #f0ad4e !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: #ec971f !important;
+    border-color: #ec971f !important;
+  }
+}
+
+.p-button-primary {
+  background-color: #007ad9 !important;
+  border-color: #007ad9 !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: #005bb5 !important;
+    border-color: #005bb5 !important;
+  }
+}
+
+// Back to List button
+.p-button-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: #5a6268 !important;
+    border-color: #545b62 !important;
+  }
+}
