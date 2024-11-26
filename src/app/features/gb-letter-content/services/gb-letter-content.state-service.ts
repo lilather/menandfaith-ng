@@ -4,7 +4,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { ContentLetter } from '../models';
 import { LetterService } from './gb-letter-content.service';
 import { toObservable } from '@angular/core/rxjs-interop';
-import {mapId} from './../../../utils/maptoId'
 import {UpdateLetterContentDto} from "../dtos";
 @Injectable({
   providedIn: 'root',

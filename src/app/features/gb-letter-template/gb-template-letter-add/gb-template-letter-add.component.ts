@@ -57,19 +57,7 @@ export class GbTemplateAddComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Set up autosave with debounce
-    this.autoSaveSubscription = this.changes$.pipe(
-      debounceTime(5000), // Wait for 5 seconds of inactivity
-      takeUntil(this.destroy$) // Unsubscribe when the component is destroyed
-    ).subscribe(() => {
-      this.autoSave();
-    });
 
-    // Listen for form changes and trigger autosave
-    this.templateForm.valueChanges
-      .pipe(takeUntil(this.destroy$)) // Unsubscribe on destroy
-      .subscribe(() => {
-        this.changes$.next(); // Emit change event
-      });
   }
 
   // Method to handle autosave logic
@@ -87,7 +75,7 @@ export class GbTemplateAddComponent implements OnInit, OnDestroy {
       } else {
         // Update existing draft
         currentFormValues.id = this.draftId;
-        this.letterStateService.updateTemplateLetter(currentFormValues); // Update the draft
+        this.letterStateService.addTemplateLetter(currentFormValues); // Update the draft
       }
     } else {
       console.log('Form not valid for autosave');
@@ -131,7 +119,6 @@ export class GbTemplateAddComponent implements OnInit, OnDestroy {
     this.router.navigate(['/gb-list', 'Both']); // Navigate to the list view (adjust the route as necessary)
   }
 
-
   // Check if the current step is valid
   isCurrentStepValid(): boolean {
     const step = this.getCurrentStepGroup();
@@ -149,7 +136,7 @@ export class GbTemplateAddComponent implements OnInit, OnDestroy {
   }
 
   flattenFormData(formData: any): any {
-    const flat= {
+    const flat = {
       subject: formData.step1.subject,
       introduction: '', // If you have an introduction, populate it here
       reasonForGoodbye: formData.step2.reasonForGoodbye,
@@ -160,24 +147,16 @@ export class GbTemplateAddComponent implements OnInit, OnDestroy {
       conclusion: formData.step7.conclusion,
       signature: formData.step8.signature,
       draft: formData.draft,
-      userId: '123', // Replace with actual user ID or data as needed
-      id: formData.id
     };
     return flat;
   }
+
   // Submit the form data and finalize it
   onSubmit() {
     if (this.templateForm.valid) {
-      const finalFormValues = this.flattenFormData({ ...this.templateForm.value, draft: false });
-      console.log('Flattened data:', finalFormValues);
-      // Set draft to false on final submission
-      if (this.draftId) {
-        finalFormValues.id = this.draftId;
-        this.letterStateService.updateTemplateLetter(finalFormValues); // Update the existing letter as finalized
-      } else {
-        finalFormValues.id = uuidv4(); // New final letter, generate ID
-        this.letterStateService.addTemplateLetter(finalFormValues); // Add as a new letter
-      }
+      const finalFormValues = this.flattenFormData({...this.templateForm.value, draft: false});
+// New final letter, generate ID
+      this.letterStateService.addTemplateLetter(finalFormValues); // Add as a new letter
       this.isDraft = false; // Change the draft status
       // Handle form submission logic, such as sending data to a server
     }

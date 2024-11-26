@@ -2,7 +2,7 @@
   <h2>
     <input type="text" [(ngModel)]="letter.subject" (ngModelChange)="onInputChange()" placeholder="Subject">
   </h2>
-  
+
   <div class="letter-section">
     <h3>Introduction</h3>
     <textarea [(ngModel)]="letter.introduction" (ngModelChange)="onInputChange()" placeholder="Introduction"></textarea>
@@ -55,6 +55,7 @@
     <p><strong>User ID:</strong> {{ letter.userId }}</p>
   </div>
 </div>
+<button (click)="deleteLetter()">Delete</button>
 
 <ng-template #noLetterFound>
   <div class="no-letter">

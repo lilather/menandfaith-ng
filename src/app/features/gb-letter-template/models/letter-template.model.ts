@@ -1,5 +1,6 @@
 export interface TemplateLetter {
-    id: string;
+  id?: string;
+  _id?: string;
     subject: string;
     userId: string;
     introduction?: string;

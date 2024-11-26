@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
 import {  tap, catchError, switchMap, filter} from 'rxjs/operators';
 import { LetterStateService } from '../services/gb-letter-template-state-service'; // Adjust the path
@@ -35,6 +35,7 @@ export class GbTemplateLetterDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private letterStateService: LetterStateService
   ) {}
 
@@ -76,12 +77,19 @@ export class GbTemplateLetterDetailComponent implements OnInit, OnDestroy {
 
     saveChanges(): void {
       // Logic to save changes, such as calling a service method to update the letter
-      console.log('Saving changes...', this.letter);
+      this.letterStateService.updateTemplateLetter(this.letter);
       this.isChanged = false; // Reset change tracking after saving
     }
     onInputChange(): void {
       this.isChanged = true; // Set to true when any input is changed
     }
+  deleteLetter(): void {
+    // Ensure `letter.id` is defined before attempting to delete
+    if (this.letter.id) {
+      this.letterStateService.deleteTemplateLetter(this.letter.id);
+      this.router.navigate(['/goodbye-letter-template']);
+    }
+  }
 
     ngOnDestroy(): void {
       // Clean up the subscription when the component is destroyed

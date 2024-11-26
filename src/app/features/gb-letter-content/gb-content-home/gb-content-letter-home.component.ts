@@ -29,7 +29,6 @@ export class GbContentLetterHomeComponent implements OnInit {
   ngOnInit(): void {
     this.letterService.getAllContentLetters().subscribe((letters) => {
       this.contentLetters = [...letters ];
-      console.log('Content letters:', this.contentLetters);
     });
   };
 
@@ -48,7 +47,6 @@ export class GbContentLetterHomeComponent implements OnInit {
 
   @log
   async goToAdd(): Promise<void> {
-
     try {
       const success = await this.router.navigate(['goodbye-letter-content/letter-add']);
       if (success) {

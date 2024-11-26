@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TemplateLetter } from '../models';
 import { catchError, tap } from 'rxjs/operators';
 import { LetterService } from './gb-letter-template.service';
+import { UpdateLetterTemplateDto } from '../dtos';
+import {ContentLetter} from "../../gb-letter-content/models";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root',
 })
 export class LetterStateService {
-  private templateLettersSubject = new BehaviorSubject<TemplateLetter[]>([]);
-
-  templateLetters$ = this.templateLettersSubject.asObservable();
+  templateLetters = signal<TemplateLetter[]>([]);
+  templateLetters$ = toObservable(this.templateLetters);
 
   constructor(private letterService: LetterService) {
     this.loadTemplateLetters();
@@ -21,39 +23,67 @@ export class LetterStateService {
   // Load all template letters from the API
   loadTemplateLetters(): void {
     this.letterService.getAllTemplateLetters().pipe(
-      tap((letters) => this.templateLettersSubject.next(letters)),
       catchError((error) => {
-        console.error('Error loading template letters:', error);
-        return of([]); // Return an empty array in case of error
-      })
+        console.error('Error loading content letters:', error);
+        return of([]); // Return an empty array on error
+      }),
+      tap((letters) => this.templateLetters.set(letters || [])) // Ensure letters is never null
     ).subscribe();
   }
 
+  getTemplateLetterById(id: string): Observable<TemplateLetter | undefined | null> {
+    return this.letterService.getTemplateLetterById(id).pipe(
+      catchError((error) => {
+        console.error('Error fetching content letter:', error);
+        return of(undefined); // Return undefined if not found or on error
+      })
+    );
+  }
   // Add a new content letter via API
-
-addTemplateLetter(newLetter: TemplateLetter): void {
+  addTemplateLetter(newLetter: TemplateLetter): void {
     this.letterService.createTemplateLetter(newLetter).pipe(
       tap((letter) => {
-        const currentLetters = this.templateLettersSubject.getValue();
-        this.templateLettersSubject.next([...currentLetters, letter]);
-        console.log('New template letter added via API:', letter);
+        if (letter) { // Check that letter is not null
+          this.templateLetters.update((templateLetters) => [...templateLetters, letter]);
+          console.log('New content letter added via API:', letter);
+        } else {
+          console.warn('Failed to add content letter: received null');
+        }
       }),
       catchError((error) => {
-        console.error('Error adding template letter:', error);
-        return of(null);
+        console.error('Error adding content letter:', error);
+        return of(null); // Return null to complete the stream gracefully
       })
     ).subscribe();
   }
 
-updateTemplateLetter(updatedLetter: TemplateLetter): void {
-    this.letterService.updateTemplateLetter(updatedLetter.id, updatedLetter).pipe(
+  updateTemplateLetter(updatedTemplate: TemplateLetter): void {
+    if (!updatedTemplate.id) {
+      console.error(`Error: updatedTemplate.id is undefined. ${JSON.stringify(updatedTemplate)}`);
+      return;
+    }
+
+    const updateDto: UpdateLetterTemplateDto = {
+      id: updatedTemplate.id,
+      subject: updatedTemplate.subject,
+      introduction: updatedTemplate.introduction,
+      reasonForGoodbye: updatedTemplate.reasonForGoodbye,
+      turningPoint: updatedTemplate.turningPoint,
+      stepsForChange: updatedTemplate.stepsForChange,
+      futureAspirations: updatedTemplate.futureAspirations,
+      affirmation: updatedTemplate.affirmation,
+      conclusion: updatedTemplate.conclusion,
+      signature: updatedTemplate.signature,
+    };
+
+    this.letterService.updateTemplateLetter(updateDto).pipe(
       tap((letter) => {
-        const currentLetters = this.templateLettersSubject.getValue();
-        const index = currentLetters.findIndex(l => l.id === updatedLetter.id);
-        if (index > -1) {
-          currentLetters[index] = letter;
-          this.templateLettersSubject.next(currentLetters);
-          console.log('Template letter updated via API:', letter);
+        if (letter) {
+          this.templateLetters.update((currentTemplates: TemplateLetter[]) =>
+            currentTemplates.map((t: TemplateLetter) => (t.id === letter.id ? letter : t))
+          );
+        } else {
+          console.warn('Failed to update template letter: received null');
         }
       }),
       catchError((error) => {
@@ -63,6 +93,20 @@ updateTemplateLetter(updatedLetter: TemplateLetter): void {
     ).subscribe();
   }
 
+  deleteTemplateLetter(id: string): void {
+    this.letterService.deleteTemplateLetter(id).pipe(
+      tap(() => {
+        this.templateLetters.update((currentLetters) =>
+          currentLetters.filter((letter) => letter.id !== id)
+        );
+        console.log('Content letter deleted via API:', id);
+      }),
+      catchError((error) => {
+        console.error('Error deleting content letter:', error);
+        return of(null);
+      })
+    ).subscribe();
+  }
 
   // Delete a content letter via API
 
