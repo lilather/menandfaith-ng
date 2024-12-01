@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {AsyncPipe} from "@angular/common";
 import {CommonModule} from "@angular/common";
 @Component({
+    standalone: true,
     selector: 'app-sidebar',
     imports: [
         AsyncPipe,

@@ -9,10 +9,59 @@ body {
   font-family: raleway, sans-serif;
 }
 
-.feature-card {
+/* You can add global styles to this file, and also import other style files */
+/* Shared styling for both feature and add cards */
+.card-common, .feature-card, .add-card {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
   width: 250px;
   height: 425px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 15px 0;
+}
+.card-common:hover, .feature-card:hover, .add-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.card-common .card-title, .feature-card .card-title, .add-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  text-transform: capitalize;
+}
+.card-common .card-text, .feature-card .card-text, .add-card .card-text {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Styling for add cards */
+.add-card {
+  background-color: #fff;
+  text-align: center;
+}
+.add-card .add-icon {
+  color: #999;
+  font-size: 2rem;
+  margin: auto;
+}
+.add-card .add-text {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #007ad9;
+}
+.add-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Styling for feature cards (letter cards) */
+.feature-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
 }
 
 /*# sourceMappingURL=styles.css.map */

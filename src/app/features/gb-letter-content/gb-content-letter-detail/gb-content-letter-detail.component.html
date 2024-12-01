@@ -39,8 +39,6 @@
 <button (click)="backToList()">Back to List</button>
 <button (click)="deleteLetter()">Delete</button>
 
-
-
 <ng-template #noLetterFound>
   <div class="no-letter">
     <p>No letter found. Please select a letter to view its details.</p>
@@ -50,3 +48,9 @@
 <ng-template #notAvailable>
   <p>Not available</p>
 </ng-template>
+
+
+<app-dialog ngSkipHydration [(visible)]="displayDialog" [message]="'Sure you want to delete the letter'" header="Delete This Letter"
+            (confirm)="onDeleteConfirmed()">
+
+</app-dialog>

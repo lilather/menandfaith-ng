@@ -1,24 +1,18 @@
-
-
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2 bg-grey">
-      <app-sidebar></app-sidebar>
+<div class="p-grid p-nogutter">
+  <!-- Sidebar Section (always visible) -->
+  <div class="p-col-fixed sidebar p-shadow-3">
+    <div class="p-panel p-panel-custom">
+      <app-sidebar></app-sidebar> <!-- The Sidebar component content -->
     </div>
-    <div class="col-10">
-      <p>dashboard works!</p>
-      <div class="row">
-        <div *ngFor="let card of routeCards" class="col-md-4 mb-4">
-          <div class="card h-15 shadow" (click)="navigateTo(card.path)" style="cursor: pointer;">
-            <div class="card-body">
-              <img [src]="card.icon" alt="{{ card.title }} icon" class="card-icon mb-2">
-              <h5 class="card-title">{{ card.title }}</h5>
-              <p class="card-text">{{ card.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="p-col main-content">
+    <div class="p-m-3">
+      <p-card header="Dashboard" class="p-mb-3">
+        <p>Welcome to the Dashboard component</p>
+        <router-outlet></router-outlet> <!-- Content will change based on route -->
+      </p-card>
     </div>
   </div>
 </div>

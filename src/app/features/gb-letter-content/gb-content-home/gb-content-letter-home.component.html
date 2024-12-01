@@ -1,14 +1,15 @@
-
+<div class="wrapper">
 <div class="container mt-4">
   <!-- Header Section -->
+  <div class="header">
   <h1>Goodbye Letter Content</h1>
   <p>This page allows you to create and manage your goodbye letters.</p>
-
+  </div>
   <!-- Card for Adding New Letter -->
-  <div class=" feature-card card mb-3" (click)="goToAdd()">
-    <div class="card-body text-center">
-      <i class="fas fa-plus fa-2x"></i>
-      <p>Add New Letter</p>
+  <div class=" add-card card mb-3" (click)="goToAdd()">
+    <div class="card-body">
+      <h5 class="card-title"> Add New Letter </h5>
+        <i class="pi add-icon pi-plus-circle" style="font-size: 7rem"></i>
     </div>
   </div>
 
@@ -18,7 +19,8 @@
     <div *ngFor="let letter of contentLetters" class="feature-card card mb-3" (click)="goToDetail(letter.id!)">
       <div class="card-body">
         <h5 class="card-title">{{ letter.subject }}</h5>
-        <p class="card-text">{{ letter.content | slice:0:100 }}...</p>
+        <p class="card-text">Created: {{ letter.createdAt | date:'medium' }}</p>
+        <p class="card-text">Last Modified: {{ letter.updatedAt | date:'medium' }}</p>
       </div>
     </div>
   </div>
@@ -26,3 +28,4 @@
   <ng-template #noLetters>
     <p>No letters available.</p>
   </ng-template>
+</div>

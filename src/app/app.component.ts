@@ -5,6 +5,7 @@ import { UserStateService } from './users/services/user-state-service';
 import {log} from './decorators/log.decorator'
 import { IUser } from './users/user.model';
 import { isPlatformBrowser } from '@angular/common';
+import { ConfirmationService } from 'primeng/api';
 
 
 @Component({

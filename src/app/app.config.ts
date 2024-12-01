@@ -10,8 +10,9 @@ import { dashboardRoutes } from './routes/dashboard-routes';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { AuthErrorInterceptor } from './auth/auth-error.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfirmationService } from 'primeng/api'; // Import ConfirmationService
 
-const routes = [...userRoutes, ...dashboardRoutes, ...featureRoutes];
+const routes = [...userRoutes, ...dashboardRoutes];
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,7 +33,8 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthErrorInterceptor,
       multi: true
-    }
+    },
+    ConfirmationService
   ]
 };
 

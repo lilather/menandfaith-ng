@@ -6,18 +6,23 @@ import { ContentLetter } from '../models';
 import { tap, catchError, switchMap } from 'rxjs/operators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe, CommonModule } from '@angular/common';
-
+import { ToastModule } from 'primeng/toast';
+import {ConfirmationService} from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import {DialogComponent} from './../../../shared/confirmation-modal/confirmation-modal.component';
 @Component({
     standalone: true,
-    imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule],
+    imports: [FormsModule, DatePipe, ReactiveFormsModule, CommonModule, DialogComponent, ToastModule],
     selector: 'app-gb-content-letter-detail',
-    templateUrl: './gb-template-letter-home.component.html',
-    styleUrls: ['./gb-template-letter-home.component.scss']
+    templateUrl: './gb-content-letter-detail.component.html',
+    styleUrls: ['./gb-content-letter-detail.scss'],
+    providers: [ConfirmationService, MessagesModule]
 })
 export class GbContentLetterDetailComponent implements OnInit, OnDestroy {
+  msgs: any = [];
   private subscription: Subscription = new Subscription();
   isChanged = false;
-
+  displayDialog: boolean = false
   letter: ContentLetter = {
     id: '', // Initialize with an empty string to avoid potential `undefined` issues
     subject: '',
@@ -31,7 +36,8 @@ export class GbContentLetterDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private letterStateService: LetterStateService
+    private letterStateService: LetterStateService,
+
   ) {}
 
   ngOnInit(): void {
@@ -80,29 +86,19 @@ export class GbContentLetterDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['goodbye-letter-content']);
   }
 
+  deleteLetter(): void {
+    this.displayDialog = true;
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  showConfirmation: boolean = false;
 
-  deleteLetter(): void {
-    this.showConfirmation = true;
-  }
-
-  confirmDelete(): void {
-    this.showConfirmation = false;
-
+  onDeleteConfirmed() {
     console.log('Deleting letter:', this.letter);
-    // Ensure `letter.id` is defined before attempting to delete
-    if (this.letter.id) {
-      this.letterStateService.deleteContentLetter(this.letter.id);
-      this.router.navigate(['/goodbye-letter-content']);
-    }
   }
 
-  cancelDelete(): void {
-    this.showConfirmation = false;
-  }
 
 }
+
+

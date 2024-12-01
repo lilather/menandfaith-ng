@@ -1,9 +1,43 @@
-.wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: 20px;
+// General body styling for a better user experience
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+// Wrapper div styling
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto; // Center horizontally
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+// Header section styling
+.header {
+  margin: 50px 0;
+
+  h1 {
+    text-align: left;
+    color: #4a4a4a;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+  }
+}
+
+
+// General styling for empty state message
+p.ng-template {
+  text-align: center;
+  color: #999;
+  margin-top: 2rem;
+  font-size: 1.1rem;
 }
