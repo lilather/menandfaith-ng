@@ -11,31 +11,27 @@ import {DialogModule} from "primeng/dialog";
   standalone: true,
   selector: 'app-dialog',
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['confirmation-modal.component.css'],
-  providers: [ConfirmationService, MessageService],
-  imports: [CommonModule, ConfirmDialogModule, ButtonModule, MessagesModule, MessageModule, DialogModule],
+  styleUrls: ['./confirmation-modal.component.css'],
+  imports: [CommonModule, DialogModule, ButtonModule]
 })
 export class DialogComponent {
-  @Input() visible: boolean = false;
-  @Input() header: string = 'Dialog';
-  @Input() message: string = 'Are you sure?';
-  @Input() width: string = '500px';
-  @Input() closable: boolean = true;
-  @Output() confirm = new EventEmitter<void>(); // Output event to notify parent component on confirm action
+  @Input() visible: boolean = false; // Dialog visibility
+  @Input() header: string = 'Dialog'; // Dialog header
+  @Input() message: string = 'Are you sure?'; // Dialog message
+  @Input() dialogClass: string = ''; // Additional class for styling
+  @Input() width: string = '500px'; // Dialog width
+  @Input() closable: boolean = true; // Allow closing dialog via close button
 
-  @Output() visibleChange = new EventEmitter<boolean>();
-
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+  @Output() confirm = new EventEmitter<void>(); // Emit when confirmed
+  @Output() visibleChange = new EventEmitter<boolean>(); // Emit visibility change
 
   closeDialog() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
-
   onConfirm() {
-    // Perform the desired action on confirmation
-    this.confirm.emit(); // Emit the confirm event to the parent component
-    this.closeDialog(); // Close the dialog after confirming
+    this.confirm.emit(); // Emit confirmation event
+    this.closeDialog(); // Close dialog after confirming
   }
 }

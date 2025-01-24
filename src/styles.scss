@@ -1,72 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
-
+@forward './colors.scss';
+@use "./colors.scss";
+@use './button.scss';
+@use './fonts.scss';
+@use './p-card.scss';
+@use './forms.scss';
+@use './toast.scss';
 html, body { height: 100%; }
-body { margin: 0; font-family: raleway, sans-serif; }
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
-
-
-
-/* Shared styling for both feature and add cards */
-.card-common {
-  cursor: pointer; // Make it clear that it is clickable
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 250px;
-  height: 425px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  margin:15px 0;
-  &:hover {
-    transform: translateY(-5px); // Lift the card when hovered
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-    text-transform: capitalize;
-  }
-
-  .card-text{
-    color: #555;
-    font-size: 1rem;
-  }
+:root {
+  --font-family: "Raleway", sans-serif;
 }
-
-/* Styling for add cards */
-.add-card {
-  @extend .card-common; // Inherit shared styles
-  background-color: #fff;
-  text-align: center;
-
-  .add-icon {
-    color: #999; // Primary blue color
-    font-size: 2rem;
-    margin: auto;
-  }
-
-  .add-text {
-    margin-top: 0.5rem;
-    font-weight: bold;
-    color: #007ad9; // Primary blue color
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-}
-
-/* Styling for feature cards (letter cards) */
-.feature-card {
-  @extend .card-common; // Inherit shared styles
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-
+body {
+  padding: 3% 2%;
+  margin: 0;
+  background-color: colors.$bg-dark; /* Dark background color */
 }
 
 
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-top: 50px;
+  justify-content:center;
+}
+.container{
+  width:75%;
+  max-width: 1200px;
+  border: 3px solid colors.$grey-color;
+  border-radius:15px;
+  padding : 60px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  position: relative;
+  flex-wrap: wrap;
+}
+.input-group > label {
+  margin-bottom: 0.2rem; /* Add space between label and input */
+  font-size: 1.2rem; /* Slightly smaller font for labels */
+  font-weight: bold; /* Make labels stand out */
+  flex-grow: 1; /* Allow the label to grow and occupy available space */
+  width:100%;
+  font-weight:500;
+  text-transform: lowercase;
+}
 

@@ -1,0 +1,17 @@
+.add-step {
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  margin-bottom: 50px;
+}
+
+h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=gb-template-letter-add.css.map */

@@ -1,0 +1,67 @@
+/* Toast Container */
+.p-toast {
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Toast Message Box */
+.p-toast-message {
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem; /* Add padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Success Message */
+.p-toast-message-success {
+  background-color: rgba(177, 178, 181, 0.4) !important; /* Green background */
+  color: white !important; /* White text */
+}
+
+/* Error Message */
+.p-toast-message-error {
+  background-color: #dc3545 !important; /* Red background */
+  color: white !important; /* White text */
+}
+
+/* Warning Message */
+.p-toast-message-warn {
+  background-color: #ffc107 !important; /* Yellow background */
+  color: #212529 !important; /* Dark text */
+}
+
+/* Info Message */
+.p-toast-message-info {
+  background-color: #17a2b8 !important; /* Blue background */
+  color: white !important; /* White text */
+}
+
+/* Customize the close button */
+.p-toast-icon-close-icon {
+  color: white !important; /* Make close icon white */
+  font-size: 1.2rem; /* Slightly larger close icon */
+}
+
+/* Reset all buttons inside the toast */
+.p-toast button {
+  all: unset; /* Resets all inherited styles */
+  cursor: pointer; /* Adds a pointer cursor */
+}
+
+/* Style the close button specifically */
+.p-toast-icon-close {
+  background: none; /* Remove any background */
+  border: none; /* Remove borders */
+  font-size: 1rem; /* Adjust icon size */
+  color: inherit; /* Use the current text color */
+  margin: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-toast-icon-close:hover {
+  color: #dc3545; /* Optional hover color */
+  background: rgba(0, 0, 0, 0.1); /* Optional hover background */
+  border-radius: 50%; /* Optional rounded hover effect */
+}

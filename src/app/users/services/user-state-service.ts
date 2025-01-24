@@ -71,6 +71,7 @@ export class UserStateService {
   public getCurrentUser(): IUser | null {
     return this._user();
   }
+
   public getUserObservable() {
     return toObservable(this.user);
   }

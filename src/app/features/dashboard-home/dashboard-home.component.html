@@ -1,16 +1,30 @@
+  <app-welcome-message
+    *ngIf="currentUser"
+    [headerMessage]="'Hello ' + (currentUser?.username || 'Guest')"
+    [avatarUrl]="currentUser?.avatarUrl || ''"
+    [message]="'Thank you for visiting our platform!'"
+  ></app-welcome-message>
 
-<div class="container-fluid">
-  <div class="row">
-      <div class="row">
-        <div *ngFor="let card of routeCards" class="col-md-4 mb-4">
-          <div class="card h-15 shadow" (click)="navigateTo(card.path)" style="cursor: pointer;">
-            <div class="card-body">
-              <img [src]="card.icon" alt="{{ card.title }} icon" class="card-icon mb-2">
-              <h5 class="card-title">{{ card.title }}</h5>
-              <p class="card-text">{{ card.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="dashboard-cards">
+    <div class="card-wrapper" *ngFor="let card of routeCards; let i = index">
+      <p-card
+        [ngClass]="{'p-card-feature': i === 0}"
+        (click)="navigateTo(card.path)"
+      >
+        <ng-template pTemplate="header">
+          <h2>{{ card.title }}</h2>
+        </ng-template>
+
+        <ng-template pTemplate="content">
+          <p>{{ card.description }}</p>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <span *ngIf="card.count !== undefined">
+            {{ card.count }} {{ card.title }} found!
+          </span>
+        </ng-template>
+      </p-card>
     </div>
   </div>
+

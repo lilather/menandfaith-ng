@@ -1,0 +1,43 @@
+<div class="form-container-wrapper">
+  <div class="form-container">
+
+      <form *ngIf="contentLetterForm" [formGroup]="contentLetterForm" (ngSubmit)="onSubmit()">
+        <!-- Subject Field -->
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input pInputText type="text" id="subject" formControlName="subject" placeholder="Enter the subject" />
+          <div *ngIf="contentLetterForm.get('subject')?.invalid && contentLetterForm.get('subject')?.touched" class="error">
+            Subject is required.
+          </div>
+        </div>
+
+        <!-- Content Field -->
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea pInputTextarea id="content" formControlName="content" rows="5" placeholder="Write your content here..."></textarea>
+          <div *ngIf="contentLetterForm.get('content')?.invalid && contentLetterForm.get('content')?.touched" class="error">
+            Content is required.
+          </div>
+        </div>
+
+        <!-- Signature Field -->
+        <div class="form-group">
+          <label for="signature">Signature</label>
+          <input pInputText type="text" id="signature" formControlName="signature" placeholder="Your signature" />
+          <div *ngIf="contentLetterForm.get('signature')?.invalid && contentLetterForm.get('signature')?.touched" class="error">
+            Signature is required.
+          </div>
+        </div>
+
+        <!-- Buttons for Saving and Submitting -->
+        <div class="form-group button-container">
+          <button pButton type="save" label="Save Letter"  [ngClass]="'btn custom-primary-button'" [disabled]="contentLetterForm.invalid"></button>
+        </div>
+
+        <!-- Navigation Button -->
+        <div class="form-group">
+          <button pButton type="button" label="Back to List" class="btn p-button-secondary" (click)="navigateToList()"></button>
+        </div>
+      </form>
+  </div>
+</div>

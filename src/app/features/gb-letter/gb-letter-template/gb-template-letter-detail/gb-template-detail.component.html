@@ -1,0 +1,118 @@
+<script src="gb-template-detail.component.ts"></script>
+<app-dialog
+  [(visible)]="isDialogVisible"
+  [header]="dialogConfig.header"
+  [message]="dialogConfig.message"
+  [dialogClass]="dialogConfig.dialogClass"
+  (confirm)="confirmDeleteLetter()"
+></app-dialog>
+
+
+
+
+<div class="form-container-wrapper">
+<div *ngIf="letter; else noLetterFound" class="form-container">
+  <label>Saying Goodbye To</label>
+
+  <h2>
+    <input type="text" [(ngModel)]="letter.subject" (ngModelChange)="onInputChange()" placeholder="Subject">
+  </h2>
+
+  <div class="letter-section">
+    <label>Reason for Goodbye</label>
+    <textarea [(ngModel)]="letter.reasonForGoodbye" (ngModelChange)="onInputChange()" placeholder="Reason for Goodbye"></textarea>
+  </div>
+
+  <div class="letter-section">
+    <label>Turning Point</label>
+    <textarea [(ngModel)]="letter.turningPoint" (ngModelChange)="onInputChange()" placeholder="Turning Point"></textarea>
+  </div>
+
+  <div class="letter-section">
+    <label>Steps for Change</label>
+    <ul *ngIf="letter.stepsForChange && letter.stepsForChange.length > 0; else notAvailable">
+      <li *ngFor="let step of letter.stepsForChange; let i = index; trackBy: trackByIndex">
+        <div class="input-group">
+          <label for="step{{i}}" class="step-label">Step {{i + 1}}</label>
+          <input
+            type="text"
+            id="Step{{i}}"
+            [(ngModel)]="letter.stepsForChange[i]"
+            placeholder="Step {{i + 1}}"
+            (ngModelChange)="onInputChange()"
+          >
+          <!-- Circular minus button -->
+          <button
+            type="button"
+            *ngIf="letter.stepsForChange.length > 1"
+            (click)="removeStep(i)"
+            class="btn-yellow-circle"
+            title="Remove Step"
+          >
+            &minus;
+          </button>
+        </div>
+        <!-- Plus button only for the last input -->
+        <div class="add-circle" *ngIf="i === letter.stepsForChange.length - 1">
+          <button type="button" (click)="addStep()"  [ngClass]="'btn-add-circle'" title="Add Step">
+            +
+          </button>
+          Add Another Step
+        </div>
+      </li>
+    </ul>
+    <p-toast position="top-right"></p-toast>
+
+  </div>
+
+  <div class="letter-section">
+    <label>Future Aspirations</label>
+    <textarea [(ngModel)]="letter.futureAspirations" (ngModelChange)="onInputChange()" placeholder="Future Aspirations"></textarea>
+  </div>
+
+  <div class="letter-section">
+    <label>Affirmation</label>
+    <textarea [(ngModel)]="letter.affirmation" (ngModelChange)="onInputChange()" placeholder="Affirmation"></textarea>
+  </div>
+
+  <div class="letter-section">
+    <label>Conclusion</label>
+    <textarea [(ngModel)]="letter.conclusion" (ngModelChange)="onInputChange()" placeholder="Conclusion"></textarea>
+  </div>
+
+  <div class="letter-section">
+    <label>Signature</label>
+    <input type="text" [(ngModel)]="letter.signature" (ngModelChange)="onInputChange()" placeholder="Signature">
+
+</div>
+
+  <!-- Conditionally display the Save button -->
+  <div class="button-container">
+    <button [ngClass]="'btn btn-yellow '" *ngIf="isChanged" (click)="saveChanges()">Save</button>
+    <button
+      [ngClass]="'btn button-primary'"
+      (click)="showDialog({
+      header: 'Delete Confirmation',
+      message: 'Are you sure you want to delete this letter?',
+      dialogClass: 'custom-delete-dialog',
+      action: onDialogConfirm
+    })"
+    >
+      Delete
+    </button>
+
+</div>
+
+
+
+</div>
+
+  <ng-template #noLetterFound>
+    <div class="no-letter">
+      <p>No letter found. Please select a letter to view its details.</p>
+    </div>
+  </ng-template>
+
+  <ng-template #notAvailable>
+    <p>Not available</p>
+  </ng-template>

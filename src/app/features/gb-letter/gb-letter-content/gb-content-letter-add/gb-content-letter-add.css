@@ -1,0 +1,669 @@
+@charset "UTF-8";
+.grey-color {
+  color: #6c757d;
+}
+
+.yellow-color {
+  color: #ffcc00;
+}
+.yellow-color:hover {
+  color: #e6b800;
+}
+
+.accent-color {
+  color: #ff6600;
+}
+.accent-color:hover {
+  color: #cc5200;
+}
+
+.border-grey {
+  border-color: #dadce1;
+}
+
+.border-yellow {
+  border-color: #ffcc00;
+  opacity: 0.8;
+}
+.border-yellow:hover {
+  border-color: #e6b800;
+}
+
+.bg-dark {
+  background-color: #181a1e;
+}
+
+.bg-yellow {
+  background-color: #ffcc00;
+  opacity: 0.4;
+}
+.bg-yellow:hover {
+  background-color: #e6b800;
+}
+
+.bg-accent {
+  background-color: #ff6600;
+}
+.bg-accent:hover {
+  background-color: #cc5200;
+}
+
+.button-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-primary:hover {
+  background-color: #0056b3;
+}
+.button-primary:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.button-yellow {
+  background-color: #ffcc00;
+  color: black;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-yellow:hover {
+  background-color: #e6b800;
+}
+.button-yellow:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.button-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-danger:hover {
+  background-color: #a71d2a;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.7px; /* Adds 0.7px space between characters */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+}
+.btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.btn:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.btn.btn-primary:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn.btn-danger:hover {
+  background-color: #a71d2a;
+  border-color: #a71d2a;
+}
+.btn.btn-danger:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn.btn-yellow {
+  background-color: #ffcc00;
+  color: #333333;
+  border: 1px solid #e6b800;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn.btn-yellow:hover {
+  background-color: #e6b800;
+  border-color: #e6b800;
+}
+.btn.btn-yellow:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn.btn-disabled {
+  background-color: #a0a0a0;
+  border: 1px solid;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.btn.btn-disabled:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.btn-add-circle {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-add-circle:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.btn-add-circle:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.btn-yellow-circle {
+  background-color: #ffcc00;
+  color: #333333;
+  border: 1px solid #e6b800;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-yellow-circle:hover {
+  background-color: #e6b800;
+  border-color: #e6b800;
+}
+.btn-yellow-circle:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn-yellow-circle:hover {
+  background-color: #e6b800;
+}
+
+.btn-remove-circle {
+  background-color: #ffcc00;
+  color: #333333;
+  border: 1px solid #e6b800;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-remove-circle:hover {
+  background-color: #e6b800;
+  border-color: #e6b800;
+}
+.btn-remove-circle:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+.btn-remove-circle:hover {
+  background-color: #e6b800; /* Corrected comment */
+}
+
+button:disabled,
+.btn-disabled {
+  background-color: #a0a0a0;
+  border: 1px solid;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  opacity: 0.6;
+  pointer-events: none;
+}
+button:disabled:disabled,
+.btn-disabled:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.custom-primary-button {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.custom-primary-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.custom-primary-button:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.custom-danger-button {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.custom-danger-button:hover {
+  background-color: #a71d2a;
+  border-color: #a71d2a;
+}
+.custom-danger-button:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.custom-yellow-button {
+  background-color: #ffcc00;
+  color: #333333;
+  border: 1px solid #e6b800;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.custom-yellow-button:hover {
+  background-color: #e6b800;
+  border-color: #e6b800;
+}
+.custom-yellow-button:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+body {
+  font-family: raleway, sans-serif;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.accent {
+  font-family: "Dancing Script", serif, cursive;
+}
+
+:host {
+  background-color: transparent;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  margin-top: 80px;
+}
+
+.p-card {
+  width: 500px;
+  height: 350px;
+  border: 1px solid #dadce1;
+  border-radius: 10px;
+  padding: 7px 15px;
+  background: transparent;
+  color: #fff;
+  padding: 1rem;
+  /* Make this section grow */
+}
+
+.p-card-title, .p-card-header h2 {
+  font-size: 1.7rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.p-card-content h2 {
+  color: #ffcc00;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.p-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  height: 100%;
+  font-size: 1.5rem;
+}
+
+.p-card:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.p-card-feature {
+  background: rgba(153, 134, 69, 0.16) !important;
+  color: #fff;
+  border-radius: 10px;
+}
+.p-card-feature .p-card {
+  border: 1px solid #ffcc00;
+  background: rgba(153, 134, 69, 0.16) !important;
+}
+
+.p-card-feature .p-card {
+  font-size: 1.5rem;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.p-card-footer {
+  padding: 1rem 0rem;
+  font-size: 0.9rem;
+}
+
+.p-card-add {
+  font-size: 2rem;
+  color: #ffffff;
+}
+.p-card-add .p-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  height: 100%;
+  padding: 0.5rem;
+}
+
+.p-card-add .p-card-title {
+  font-size: 2rem;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.p-card-add .card-icon {
+  color: #ffcc00;
+  font-size: 60px;
+}
+
+.with-prompts {
+  position: relative;
+  /* The button is relative so the pseudo-element can be absolutely positioned inside */
+}
+.with-prompts::after {
+  content: " With Prompts";
+  position: absolute;
+  /* Decide how you want to position it inside the button */
+  top: 80%;
+  right: 1rem; /* For example, 0.5rem from the right edge */
+  transform: translateY(-50%); /* Center vertically */
+  pointer-events: none; /* So clicks still go to the button */
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #fff;
+  /* If you find the text is getting clipped,
+     consider overriding PrimeNG’s overflow or paddings */
+  /* overflow: visible; */
+}
+
+.form-container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.form-container {
+  width: 75%;
+  max-width: 1200px;
+  border: 3px solid #6c757d;
+  border-radius: 15px;
+  padding: 60px;
+}
+
+label {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background-color: rgba(177, 178, 181, 0.4);
+  color: #fff;
+  margin: 20px 0;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #ffcc00;
+  outline: none;
+}
+
+input {
+  min-height: 50px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-group .error {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #fff; /* White text color */
+  font-style: italic; /* Italicized text */
+}
+
+/* Toast Container */
+.p-toast {
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Toast Message Box */
+.p-toast-message {
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem; /* Add padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Success Message */
+.p-toast-message-success {
+  background-color: rgba(177, 178, 181, 0.4) !important; /* Green background */
+  color: white !important; /* White text */
+}
+
+/* Error Message */
+.p-toast-message-error {
+  background-color: #dc3545 !important; /* Red background */
+  color: white !important; /* White text */
+}
+
+/* Warning Message */
+.p-toast-message-warn {
+  background-color: #ffc107 !important; /* Yellow background */
+  color: #212529 !important; /* Dark text */
+}
+
+/* Info Message */
+.p-toast-message-info {
+  background-color: #17a2b8 !important; /* Blue background */
+  color: white !important; /* White text */
+}
+
+/* Customize the close button */
+.p-toast-icon-close-icon {
+  color: white !important; /* Make close icon white */
+  font-size: 1.2rem; /* Slightly larger close icon */
+}
+
+/* Reset all buttons inside the toast */
+.p-toast button {
+  all: unset; /* Resets all inherited styles */
+  cursor: pointer; /* Adds a pointer cursor */
+}
+
+/* Style the close button specifically */
+.p-toast-icon-close {
+  background: none; /* Remove any background */
+  border: none; /* Remove borders */
+  font-size: 1rem; /* Adjust icon size */
+  color: inherit; /* Use the current text color */
+  margin: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-toast-icon-close:hover {
+  color: #dc3545; /* Optional hover color */
+  background: rgba(0, 0, 0, 0.1); /* Optional hover background */
+  border-radius: 50%; /* Optional rounded hover effect */
+}
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+:root {
+  --font-family: "Raleway", sans-serif;
+}
+
+body {
+  padding: 3% 2%;
+  margin: 0;
+  background-color: #181a1e; /* Dark background color */
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.container {
+  width: 75%;
+  max-width: 1200px;
+  border: 3px solid #6c757d;
+  border-radius: 15px;
+  padding: 60px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.input-group > label {
+  margin-bottom: 0.2rem; /* Add space between label and input */
+  font-size: 1.2rem; /* Slightly smaller font for labels */
+  font-weight: bold; /* Make labels stand out */
+  flex-grow: 1; /* Allow the label to grow and occupy available space */
+  width: 100%;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+textarea {
+  min-height: 500px;
+}
+
+/*# sourceMappingURL=gb-content-letter-add.css.map */

@@ -1,0 +1,23 @@
+.yellow-color {
+  color: #f0ad4e;
+}
+
+.border-grey {
+  color: #dadce1;
+}
+
+.border-yellow {
+  color: #ffcc00;
+  opacity: 0.8;
+}
+
+.bg-dark {
+  color: #181a1e;
+}
+
+.bg-yellow {
+  color: #ffcc00;
+  opacity: 0.4;
+}
+
+/*# sourceMappingURL=colors.css.map */

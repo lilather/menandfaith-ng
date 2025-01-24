@@ -1,0 +1,118 @@
+// Define SCSS color variables
+$yellow-color: #ffcc00; // Base yellow
+$yellow-hover: #e6b800; // Darker yellow for hover
+$accent-color: #ff6600; // Accent color (e.g., complementary to yellow)
+$accent-hover: #cc5200; // Darker accent for hover
+$primary-color: #007bff; // Primary button color
+$primary-hover: #0056b3; // Darker blue for hover
+$danger-color: #dc3545; // Danger button color
+$danger-hover: #a71d2a; // Darker red for hover
+$disabled-bg: #e0e0e0; // Disabled button background
+$disabled-color: #a0a0a0; // Disabled button text color
+
+$border-grey: #dadce1;
+$border-yellow: #ffcc00;
+$bg-dark: #181a1e;
+$bg-yellow: #ffcc00;
+$grey-color: #6c757d;
+
+// General usage classes
+.grey-color {
+  color: $grey-color;
+}
+
+.yellow-color {
+  color: $yellow-color;
+
+  &:hover {
+    color: $yellow-hover; // Hover effect for yellow text
+  }
+}
+
+.accent-color {
+  color: $accent-color;
+
+  &:hover {
+    color: $accent-hover; // Hover effect for accent text
+  }
+}
+
+.border-grey {
+  border-color: $border-grey;
+}
+
+.border-yellow {
+  border-color: $border-yellow;
+  opacity: 0.8;
+
+  &:hover {
+    border-color: $yellow-hover; // Hover effect for yellow border
+  }
+}
+
+.bg-dark {
+  background-color: $bg-dark;
+}
+
+.bg-yellow {
+  background-color: $bg-yellow;
+  opacity: 0.4;
+
+  &:hover {
+    background-color: $yellow-hover; // Hover effect for yellow background
+  }
+}
+
+.bg-accent {
+  background-color: $accent-color;
+
+  &:hover {
+    background-color: $accent-hover; // Hover effect for accent background
+  }
+}
+
+// Button-specific classes
+.button-primary {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+
+  &:disabled {
+    background-color: $disabled-bg;
+    color: $disabled-color;
+    cursor: not-allowed;
+  }
+}
+
+.button-yellow {
+  background-color: $yellow-color;
+  color: black; // Ensure readability
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $yellow-hover;
+  }
+
+  &:disabled {
+    background-color: $disabled-bg;
+    color: $disabled-color;
+    cursor: not-allowed;
+  }
+}
+
+.button-danger {
+  background-color: $danger-color;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $danger-hover;
+  }
+}

@@ -1,0 +1,167 @@
+@use './colors.scss' as colors;
+
+
+// Button Colors Map
+$btn-colors: (
+  primary: (
+    color: colors.$primary-color,
+    hover: colors.$primary-hover,
+    text-color: white,
+    border-color: colors.$primary-color
+  ),
+  yellow: (
+    color: colors.$yellow-color,
+    hover: colors.$yellow-hover,
+    text-color: #333333, // Dark font color for better contrast
+    border-color: colors.$yellow-hover
+  ),
+  danger: (
+    color: colors.$danger-color,
+    hover: colors.$danger-hover,
+    text-color: white,
+    border-color: colors.$danger-color
+  ),
+  disabled: (
+    bg: colors.$disabled-bg,
+    color: colors.$disabled-color
+  )
+);
+
+// Mixin for Dynamic Button Colors
+@mixin button-colors($type) {
+  @if map-has-key($btn-colors, $type) {
+    $color: map-get(map-get($btn-colors, $type), color);
+    $hover: map-get(map-get($btn-colors, $type), hover);
+    $text-color: map-get(map-get($btn-colors, $type), text-color);
+    $border-color: map-get(map-get($btn-colors, $type), border-color);
+    $bg-disabled: map-get(map-get($btn-colors, disabled), bg);
+    $color-disabled: map-get(map-get($btn-colors, disabled), color);
+
+    background-color: $color;
+    color: $text-color;
+    border: 1px solid $border-color;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      background-color: $hover;
+      border-color: $hover;
+    }
+
+    &:disabled {
+      background-color: $bg-disabled;
+      color: $color-disabled;
+      border-color: $bg-disabled;
+      cursor: not-allowed;
+    }
+  } @else {
+    @error "Button type `#{$type}` is not defined in $btn-colors.";
+  }
+}
+
+// General Button Container Styles
+.button-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+// Base Button Styles
+.btn {
+  @include button-colors(primary); // Default to primary if no specific type is provided
+  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.7px; /* Adds 0.7px space between characters */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width:125px;
+  // Modifier Classes
+  &.btn-primary {
+    @include button-colors(primary);
+  }
+
+  &.btn-danger {
+    @include button-colors(danger);
+  }
+
+  &.btn-yellow {
+    @include button-colors(yellow);
+  }
+
+  &.btn-disabled {
+    @include button-colors(disabled);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// Circular Add Button
+.btn-add-circle {
+  @include button-colors(primary);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+// Specific Circular Yellow Button
+.btn-yellow-circle {
+  @include button-colors(yellow);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: map-get(map-get($btn-colors, yellow), hover);
+  }
+}
+
+// Circular Remove Button
+.btn-remove-circle {
+  @include button-colors(yellow);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: map-get(map-get($btn-colors, yellow), hover); /* Corrected comment */
+  }
+}
+
+// Disabled Button Styling (redundant if using .btn-disabled)
+button:disabled,
+.btn-disabled {
+  @include button-colors(disabled);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+// Custom Classes for Specific Buttons
+.custom-primary-button {
+  @include button-colors(primary);
+}
+
+.custom-danger-button {
+  @include button-colors(danger);
+}
+
+.custom-yellow-button {
+  @include button-colors(yellow);
+}

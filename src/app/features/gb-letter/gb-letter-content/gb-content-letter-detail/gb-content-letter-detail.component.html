@@ -1,0 +1,60 @@
+<div *ngIf="letter; else noLetterFound" class="letter-detail">
+  <!-- Editable input field for the subject -->
+  <div class="letter-section">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" [(ngModel)]="letter.subject" (ngModelChange)="onInputChange()" placeholder="Subject">
+  </div>
+
+  <!-- Editable textarea for the content -->
+  <div class="letter-section">
+    <label for="content">Body</label>
+    <textarea id="content" [(ngModel)]="letter.content" (ngModelChange)="onInputChange()" placeholder="Content"></textarea>
+  </div>
+
+  <!-- Display created date, not editable -->
+  <div class="letter-section">
+    <label>Created Date</label>
+    <p *ngIf="letter.createdAt; else notAvailable">{{ letter.createdAt | date:'medium' }}</p>
+  </div>
+
+  <!-- Display and update last modified date automatically on change -->
+  <div class="letter-section">
+    <label>Last Modified Date</label>
+    <p *ngIf="letter.updatedAt; else notAvailable">{{ letter.updatedAt | date:'medium' }}</p>
+  </div>
+
+  <!-- Editable input field for the signature -->
+  <div class="letter-section">
+    <label for="signature">Signature</label>
+    <input type="text" id="signature" [(ngModel)]="letter.signature" (ngModelChange)="onInputChange()" placeholder="Signature">
+  </div>
+
+
+  <!-- Conditionally display the Save button when changes are detected -->
+</div>
+
+<!-- Action Buttons -->
+<div class="button-container">
+<button class="btn" *ngIf="isChanged" (click)="saveChanges()">Save</button>
+<button class="btn" (click)="backToList()">Back to List</button>
+<button class="btn" (click)="deleteLetter()">Delete</button>
+</div>
+<!-- Display the letter object as JSON for debugging -->
+<div *ngIf="letter" class="json-debug">
+  <h3>Debug - Letter JSON:</h3>
+  <pre>{{ letter | json }}</pre>
+</div>
+
+<ng-template #noLetterFound>
+  <div class="no-letter">
+    <p>No letter found. Please select a letter to view its details.</p>
+  </div>
+</ng-template>
+
+<ng-template #notAvailable>
+  <p>Not available</p>
+</ng-template>
+
+<app-dialog ngSkipHydration [(visible)]="displayDialog" [message]="'Sure you want to delete the letter'" header="Delete This Letter"
+            (confirm)="onDeleteConfirmed()">
+</app-dialog>

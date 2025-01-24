@@ -1,13 +1,11 @@
-.sidebar {
-  width: 250px; /* Fixed width for the sidebar */
-  height: 100vh; /* Full viewport height */
-  background-color: #f4f4f4; /* Light gray background for distinction */
-  position: fixed; /* Keep it fixed to the left */
-  top: 0;
-  left: 0;
-  overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
-}
+@use '../../colors.scss';
+@use '../../fonts.scss';
+
+
 
 .main-content {
+  background-color: colors.$bg-dark; /* Dark background color */
   margin-left: 250px; /* Account for the width of the fixed sidebar */
 }
+
+

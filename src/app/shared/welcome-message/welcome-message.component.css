@@ -1,0 +1,156 @@
+.grey-color {
+  color: #6c757d;
+}
+
+.yellow-color {
+  color: #ffcc00;
+}
+.yellow-color:hover {
+  color: #e6b800;
+}
+
+.accent-color {
+  color: #ff6600;
+}
+.accent-color:hover {
+  color: #cc5200;
+}
+
+.border-grey {
+  border-color: #dadce1;
+}
+
+.border-yellow {
+  border-color: #ffcc00;
+  opacity: 0.8;
+}
+.border-yellow:hover {
+  border-color: #e6b800;
+}
+
+.bg-dark {
+  background-color: #181a1e;
+}
+
+.bg-yellow {
+  background-color: #ffcc00;
+  opacity: 0.4;
+}
+.bg-yellow:hover {
+  background-color: #e6b800;
+}
+
+.bg-accent {
+  background-color: #ff6600;
+}
+.bg-accent:hover {
+  background-color: #cc5200;
+}
+
+.button-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-primary:hover {
+  background-color: #0056b3;
+}
+.button-primary:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.button-yellow {
+  background-color: #ffcc00;
+  color: black;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-yellow:hover {
+  background-color: #e6b800;
+}
+.button-yellow:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.button-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.button-danger:hover {
+  background-color: #a71d2a;
+}
+
+body {
+  font-family: raleway, sans-serif;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.accent {
+  font-family: "Dancing Script", serif, cursive;
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center;
+  background-color: #181a1e;
+  border: 1px solid;
+  border-color: #dadce1;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 200px;
+}
+.welcome-message h3 {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+.welcome-message i {
+  font-size: 50px;
+  margin-right: 20px;
+}
+
+.avatar-image {
+  width: 120px; /* Adjust as needed */
+  height: 120px; /* Adjust as needed */
+  object-fit: cover; /* Ensure the image scales properly */
+  margin-bottom: 1rem; /* Some spacing if desired */
+}
+
+.content {
+  text-align: left;
+  text-transform: capitalize;
+  color: #dadce1;
+  padding-left: 20px;
+}
+.content h3 {
+  margin: 15px 0px;
+}
+.content p {
+  margin: 8px 0px;
+  font-size: 1.3rem;
+  width: 70%;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/*# sourceMappingURL=welcome-message.component.css.map */

@@ -1,67 +1,107 @@
+body {
+  font-family: raleway, sans-serif;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.accent {
+  font-family: "Dancing Script", serif;
+}
+
+.yellow-color {
+  color: #f0ad4e;
+}
+
+.border-grey {
+  border-color: #dadce1;
+}
+
+.border-yellow {
+  border-color: #ffcc00;
+  opacity: 0.8;
+}
+
+.bg-dark {
+  background-color: #181a1e;
+}
+
+.bg-yellow {
+  background-color: #ffcc00;
+  opacity: 0.4;
+}
+
+:host {
+  background-color: transparent;
+}
+
+.p-card {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(255, 204, 0, 0.42);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  background: transparent;
+  /* Make this section grow */
+}
+
+.p-card .card-body {
+  display: flex;
+  font-size: 1.4rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.p-card:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.p-card-feature {
+  background: rgba(153, 134, 69, 0.16);
+  color: #fff;
+  border: 1px solid #ffcc00;
+}
+
+.card-footer-span {
+  margin-top: auto; /* Ensures this stays at the bottom */
+  padding: 1rem;
+}
+
+.with-prompts {
+  position: relative; /* or inline, depending on your layout needs */
+}
+.with-prompts::after {
+  content: " with prompts"; /* <<-- This is the text injection */
+  font-family: dancing-script, cursive; /* <<-- This is the font */
+  font-size: 1em; /* adjust as needed */
+  color: #606c38; /* example color */
+  margin-left: 0.5rem; /* spacing from the label text */
+  /* Additional styling, e.g. italic, bold, etc. */
+}
+
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
 html, body {
   height: 100%;
 }
 
 body {
+  padding: 3% 2%;
   margin: 0;
   font-family: raleway, sans-serif;
-}
-
-/* You can add global styles to this file, and also import other style files */
-/* Shared styling for both feature and add cards */
-.card-common, .feature-card, .add-card {
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 250px;
-  height: 425px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  margin: 15px 0;
-}
-.card-common:hover, .feature-card:hover, .add-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-.card-common .card-title, .feature-card .card-title, .add-card .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #333;
-  text-transform: capitalize;
-}
-.card-common .card-text, .feature-card .card-text, .add-card .card-text {
-  color: #555;
-  font-size: 1rem;
-}
-
-/* Styling for add cards */
-.add-card {
-  background-color: #fff;
-  text-align: center;
-}
-.add-card .add-icon {
-  color: #999;
-  font-size: 2rem;
-  margin: auto;
-}
-.add-card .add-text {
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: #007ad9;
-}
-.add-card .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-/* Styling for feature cards (letter cards) */
-.feature-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: #181a1e; /* Dark background color */
 }
 
 /*# sourceMappingURL=styles.css.map */

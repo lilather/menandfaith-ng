@@ -1,1 +1,13 @@
-<p>welcome-message works!</p>
+<p-toast></p-toast> <!-- PrimeNG Toast for dynamic notifications -->
+<div class="welcome-message">
+  <img
+    *ngIf="avatarUrl"
+    [src]="avatarUrl"
+    alt="User Avatar"
+    class="avatar-image"
+  />
+  <div class="content">
+  <h3>{{headerMessage}}</h3>
+  <p>{{message}}</p>
+  </div>
+</div>

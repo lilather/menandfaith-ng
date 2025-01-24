@@ -1,12 +1,30 @@
-<p-dialog  [(visible)]="visible"
-          [header]="header"
-          [style]="{width: width}"
-          [closable]="closable"
-          (onHide)="closeDialog()">
-  <ng-content></ng-content>
-  <div class="footer">
-    <button pButton label="Yes" class="p-button-success" (click)="onConfirm()"></button>
-    <!-- No Button -->
-    <button pButton label="No" class="p-button-secondary" (click)="closeDialog()"></button>
+<p-dialog
+  [(visible)]="visible"
+  [header]="header"
+  [modal]="true"
+  [closable]="closable"
+  [style]="{ width: width }"
+  [ngClass]="dialogClass"
+  (onHide)="closeDialog()"
+>
+  <div class="dialog-content">
+    <p>{{ message }}</p>
   </div>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="closeDialog()"
+    ></button>
+    <button
+      pButton
+      label="Confirm"
+      icon="pi pi-check"
+      class="p-button-danger"
+      (click)="onConfirm()"
+    ></button>
+  </ng-template>
 </p-dialog>

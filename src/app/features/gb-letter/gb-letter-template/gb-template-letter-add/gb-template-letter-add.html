@@ -1,0 +1,161 @@
+<div class="form-container">
+  <form [formGroup]="templateForm" (ngSubmit)="onSubmit()">
+
+    <!-- Step 1: Subject -->
+    <div *ngIf="currentStep === 0" [formGroupName]="'step1'">
+      <h3>Step 1: Subject</h3>
+      <label for="subject">What is the focus of your goodbye letter?</label>
+      <input
+        id="subject"
+        formControlName="subject"
+        placeholder="e.g., Goodbye to Alcohol"
+      />
+      <div *ngIf="!getCurrentStepGroup()?.get('subject')?.valid && getCurrentStepGroup()?.get('subject')?.touched">
+        <p class="error">Subject is required.</p>
+      </div>
+    </div>
+
+    <!-- Step 2: Reason for Goodbye -->
+    <div *ngIf="currentStep === 1" [formGroupName]="'step2'">
+      <h3>Step 2: Reason for Goodbye</h3>
+      <label for="reasonForGoodbye">Why are you saying goodbye to this?</label>
+      <textarea
+        id="reasonForGoodbye"
+        formControlName="reasonForGoodbye"
+        placeholder="Explain the negative impact it has had on your life."
+      ></textarea>
+      <div *ngIf="!getCurrentStepGroup()?.get('reasonForGoodbye')?.valid && getCurrentStepGroup()?.get('reasonForGoodbye')?.touched">
+        <p class="error">Reason is required.</p>
+      </div>
+    </div>
+
+    <!-- Step 3: Turning Point -->
+    <div *ngIf="currentStep === 2" [formGroupName]="'step3'">
+      <h3>Step 3: Turning Point</h3>
+      <label for="turningPoint">What was the turning point for your decision?</label>
+      <textarea
+        id="turningPoint"
+        formControlName="turningPoint"
+        placeholder="Describe the moment or realization that led to your decision."
+      ></textarea>
+      <div *ngIf="!getCurrentStepGroup()?.get('turningPoint')?.valid && getCurrentStepGroup()?.get('turningPoint')?.touched">
+        <p class="error">Turning point is required.</p>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep === 3" formGroupName="step4" class="letter-section">
+      <h3>Step 4: Steps for Change</h3>
+
+      <div formArrayName="stepsForChange">
+        <div *ngFor="let ctrl of stepsForChange.controls; let i = index" class="step-item">
+          <div class="input-group">
+            <label for="step{{i}}" class="step-label">Step {{i + 1}}</label>
+            <input
+              type="text"
+              id="step{{i}}"
+              [formControlName]="i"
+              placeholder="Enter Step {{i + 1}}"
+              class="step-input"
+            >
+
+            <!-- Circular minus button -->
+            <button
+              type="button"
+              *ngIf="stepsForChange.length > 1"
+              (click)="removeStep(i)"
+              class="btn-remove-circle"
+              title="Remove Step"
+            >
+              &minus;
+            </button>
+          </div>
+
+          <!-- Display validation error -->
+          <div *ngIf="ctrl.invalid && (ctrl.dirty || ctrl.touched)" class="error">
+            <p>Step {{i + 1}} is required.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Step Button -->
+      <div class="add-step">
+        <button
+          type="button"
+          (click)="addStep()"
+          class="btn-add-circle"
+          title="Add Step"
+          aria-label="Add another step"
+        >
+          +
+        </button>
+        <span>Add Another Step</span>
+      </div>
+    </div>
+
+
+
+    <!-- Step 5: Future Aspirations -->
+    <div *ngIf="currentStep === 4" [formGroupName]="'step5'">
+      <h3>Step 5: Future Aspirations</h3>
+      <label for="futureAspirations">What are your future aspirations?</label>
+      <textarea
+        id="futureAspirations"
+        formControlName="futureAspirations"
+        placeholder="Describe your goals and dreams."
+      ></textarea>
+      <div *ngIf="!getCurrentStepGroup()?.get('futureAspirations')?.valid && getCurrentStepGroup()?.get('futureAspirations')?.touched">
+        <p class="error">Future aspirations are required.</p>
+      </div>
+    </div>
+
+    <!-- Step 6: Affirmation -->
+    <div *ngIf="currentStep === 5" [formGroupName]="'step6'">
+      <h3>Step 6: Affirmation</h3>
+      <label for="affirmation">Write a positive affirmation to yourself.</label>
+      <textarea
+        id="affirmation"
+        formControlName="affirmation"
+        placeholder="E.g., 'I am capable of making positive changes.'"
+      ></textarea>
+      <div *ngIf="!getCurrentStepGroup()?.get('affirmation')?.valid && getCurrentStepGroup()?.get('affirmation')?.touched">
+        <p class="error">Affirmation is required.</p>
+      </div>
+    </div>
+
+    <!-- Step 7: Conclusion -->
+    <div *ngIf="currentStep === 6" [formGroupName]="'step7'">
+      <h3>Step 7: Conclusion</h3>
+      <label for="conclusion">How would you like to conclude your letter?</label>
+      <textarea
+        id="conclusion"
+        formControlName="conclusion"
+        placeholder="Write your concluding thoughts."
+      ></textarea>
+      <div *ngIf="!getCurrentStepGroup()?.get('conclusion')?.valid && getCurrentStepGroup()?.get('conclusion')?.touched">
+        <p class="error">Conclusion is required.</p>
+      </div>
+    </div>
+
+    <!-- Step 8: Signature -->
+    <div *ngIf="currentStep === 7" [formGroupName]="'step8'">
+      <h3>Step 8: Signature</h3>
+      <label for="signature">Sign your letter.</label>
+      <input
+        id="signature"
+        formControlName="signature"
+        placeholder="Enter your name or chosen signature."
+      />
+      <div *ngIf="!getCurrentStepGroup()?.get('signature')?.valid && getCurrentStepGroup()?.get('signature')?.touched">
+        <p class="error">Signature is required.</p>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="button-container">
+      <button type="button" class="btn" (click)="previousStep()" [disabled]="currentStep === 0">Previous</button>
+      <button type="button" class="btn" (click)="nextStep()" [disabled]="currentStep >= 7 || !isCurrentStepValid()">Next</button>
+      <button type="submit" class="btn" [disabled]="currentStep < 7 || !isCurrentStepValid()">Submit</button>
+    </div>
+
+  </form>
+</div>

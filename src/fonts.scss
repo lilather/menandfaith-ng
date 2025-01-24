@@ -1,0 +1,23 @@
+
+$accent: 'Dancing Script', serif;
+
+body{
+  font-family: raleway, sans-serif;
+  font-size:16px;
+}
+
+
+.title{
+font-size:2rem;
+font-weight:bold;
+}
+
+
+.subtitle{
+font-size:0.8rem;
+}
+
+.accent{
+  font-family: $accent, cursive;
+}
+

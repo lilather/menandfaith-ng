@@ -1,8 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { featureRoutes } from './routes/feature-routes';
-import { userRoutes } from './routes/user.routes';
+import { userRoutes } from '../app/routes/user.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CookieService } from 'ngx-cookie-service';

@@ -1,0 +1,68 @@
+
+<app-welcome-message
+  *ngIf="currentUser"
+ [headerMessage]="'Goodbye Letters'"
+  [message]="'Ready to say goodbye? Choose from guided prompts or a freeform approach to craft your perfect farewell. Whether you’re parting ways with harmful habits, emotional baggage, or saying goodbye to someone special, you can express yourself with clarity and find closure in your own way.!'"
+></app-welcome-message>
+
+<div class="card-container">
+  <!-- Add Template Letter Card -->
+  <p-card class="p-card-add p-card-feature" (click)="goToContentAdd()">
+    <div class="card-content">
+      <i class="pi pi-plus-circle card-icon"></i>
+    </div>
+    <ng-template pTemplate="title">
+      click to add a new goodbye letter
+    </ng-template>
+
+  </p-card>
+
+  <!-- Add Content Letter Card -->
+  <p-card class="p-card-add with-prompts" (click)="goToTemplateAdd()">
+    <div class="card-content">
+      <i class="pi pi-plus-circle card-icon"></i>
+    </div>
+    <ng-template pTemplate="title">
+      click to add a new goodbye letter
+    </ng-template>
+  </p-card>
+</div>
+  <div *ngIf="(templateLetters$ | async)?.length || (contentLetters$ | async)?.length; else loading">
+    <div class="letter-list">
+      <!-- Loop through combinedLetters -->
+      <ng-container *ngFor="let letter of combinedLetters$ | async">
+        <!-- Card Link and Content for Template and Content Letters -->
+        <a
+          class="card-link"
+          [class.disabled]="!letter.id"
+          (click)="letter.isContentLetter ? goToContentDetail(letter.id) : goToTemplateDetail(letter.id)"
+          [ngClass]="{
+        'content-letter': letter.isContentLetter,
+        'template-letter': !letter.isContentLetter,
+        'with-prompts': !letter.isContentLetter
+      }"
+        >
+          <p-card styleClass="letter-card">
+            <div class="card-body">
+              <!-- Conditional Label to distinguish Template vs Content Letters -->
+              <p class="subheading">{{ letter.subject ? (letter.id ? 'Saying GoodBye To:' : 'Content:') : 'No description available' }}</p>
+
+              <h2>{{ letter.subject || 'No description available.' }}</h2>
+
+              <span class="card-footer-span">
+              <p>{{ getDateText(letter) }}</p>
+            </span>
+            </div>
+          </p-card>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+  <!-- Add Buttons -->
+
+
+  <!-- Loading Placeholder -->
+  <ng-template #loading>
+    <p>Loading letters...</p>
+  </ng-template>
+

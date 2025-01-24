@@ -1,0 +1,89 @@
+.btn-remove-circle {
+  width: 20px; /* Set width for a small circle */
+  height: 20px; /* Set height for a small circle */
+  border-radius: 50%; /* Makes it circular */
+  border: none;
+  background-color: #dc3545; /* Red background */
+  color: white; /* White minus symbol */
+  font-size: 0.9rem; /* Adjust font size for minus symbol */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-remove-circle:hover {
+  background-color: #a71d2a; /* Darker red on hover */
+}
+.btn-remove-circle:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.btn-add {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-add:hover {
+  background-color: #0056b3;
+}
+.btn-add:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.p-button {
+  border-radius: 6px; /* Slightly rounded corners */
+  padding: 0.8rem 1.5rem; /* Increase padding */
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+}
+.p-button.p-button-primary {
+  background-color: #007bff;
+  color: white;
+}
+.p-button.p-button-primary:hover {
+  background-color: #0056b3;
+}
+.p-button.p-button-primary:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+.p-button.p-button-danger {
+  background-color: #dc3545;
+  color: white;
+}
+.p-button.p-button-danger:hover {
+  background-color: #a71d2a;
+}
+.p-button.p-button-danger:disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+button:disabled,
+.btn-disabled {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none; /* Ensure no interaction */
+}
+
+/*# sourceMappingURL=button.css.map */

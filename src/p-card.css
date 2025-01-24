@@ -1,0 +1,82 @@
+.yellow-color {
+  color: #f0ad4e;
+}
+
+.border-grey {
+  border-color: #dadce1;
+}
+
+.border-yellow {
+  border-color: #ffcc00;
+  opacity: 0.8;
+}
+
+.bg-dark {
+  background-color: #181a1e;
+}
+
+.bg-yellow {
+  background-color: #ffcc00;
+  opacity: 0.4;
+}
+
+body {
+  font-family: raleway, sans-serif;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+}
+
+.accent {
+  font-family: dancing-script, sans-serif;
+}
+
+:host {
+  background-color: transparent;
+}
+
+.p-card {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(255, 204, 0, 0.42);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  /* Make this section grow */
+}
+
+.p-card .card-body {
+  display: flex;
+  font-size: 1.4rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.p-card:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.p-card-feature {
+  background: rgba(153, 134, 69, 0.16);
+  color: #fff;
+  border: 1px solid #ffcc00;
+}
+
+.card-footer-span {
+  margin-top: auto; /* Ensures this stays at the bottom */
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=p-card.css.map */

@@ -1,0 +1,14 @@
+@use "../../colors.scss";
+@use "../../fonts.scss";
+
+  :host {
+    width: 250px; /* Fixed width for the sidebar */
+    position: fixed; /* Keep it fixed to the left */
+    height: 100%; /* Full height */
+    top: 0;
+    left: 0;
+    background-color: colors.$bg-dark; /* Dark background color */
+    border-right: 1px solid colors.$border-grey;
+    overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+
+}

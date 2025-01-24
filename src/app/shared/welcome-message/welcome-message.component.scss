@@ -1,0 +1,55 @@
+@use '../../../colors.scss';
+@use '../../../fonts.scss';
+
+
+.welcome-message{
+    display: flex;
+    align-items: center;
+    background-color: colors.$bg-dark;
+    border: 1px solid;
+    border-color: colors.$border-grey;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  h3{
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    margin-bottom:20px;
+
+  }
+    i{
+        font-size: 50px;
+        margin-right: 20px;
+    }
+    height:200px;
+}
+
+
+.avatar-image {
+  width: 120px;            /* Adjust as needed */
+  height: 120px;           /* Adjust as needed */
+  object-fit: cover;      /* Ensure the image scales properly */
+  margin-bottom: 1rem;    /* Some spacing if desired */
+}
+
+.content{
+  text-align: left;
+  text-transform:capitalize;
+  color: colors.$border-grey;
+  padding-left: 20px ;
+
+  h3{
+    margin:15px 0px;
+  }
+
+p{
+  margin:8px 0px;
+  font-size: 1.3rem;
+  width:70%;
+  font-weight: 500;
+  line-height:1.3
+}
+}
